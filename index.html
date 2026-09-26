@@ -148,8 +148,6 @@
     .group-head p { margin:0; color:var(--muted); font-size:13px; }
     .story-group + .story-group { border-top:1px solid var(--line); padding-top:34px; }
     .article-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:36px 22px; padding-bottom:52px; }
-    .article-grid.published-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    .upcoming-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; padding-bottom:56px; }
     .article-card { display:flex; flex-direction:column; min-width:0; color:inherit; text-decoration:none; }
     .article-card[hidden] { display:none; }
     .article-card.is-lead { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1.28fr) minmax(0,.72fr); gap:clamp(22px,3vw,42px); align-items:end; padding-bottom:31px; border-bottom:1px solid var(--line); }
@@ -213,7 +211,7 @@
       .avatar { width:54px; height:54px; }
       .avatar-blank::before { left:19px; }
       .avatar-blank::after { left:11px; }
-      .article-grid, .article-grid.published-grid, .upcoming-grid { grid-template-columns:1fr; gap:34px; }
+      .article-grid { grid-template-columns:1fr; gap:34px; }
       .article-card.is-lead { grid-column:auto; }
       .visual, .is-lead .visual { aspect-ratio:1.5; }
       .list-head { display:block; }
@@ -263,20 +261,49 @@
     .profile-read[hidden] { display:none; }
     .profile .ghost:hover { background:#fff; color:#183a2d; }
 
-    /* 大1・中1・下3 の記事面 */
-    .article-card.is-lead { grid-column:span 2; display:flex; flex-direction:column; gap:0; align-items:stretch; padding:0; border:0; }
-    .article-card.is-lead .article-body { padding:14px 1px 0; }
-    .is-lead .visual { aspect-ratio:1.66; }
-    .is-medium .visual { aspect-ratio:.83; }
-    .is-medium h4 { font-size:clamp(20px,2vw,26px); }
-    .article-grid.published-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-    .has-person .article-grid:not(.upcoming-grid) { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    .story-group.is-single .article-grid { grid-template-columns:1fr; }
-    .story-group.is-single .article-card:not(.is-pending):not([hidden]) { display:grid; grid-column:1 / -1; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); gap:28px; align-items:center; max-width:940px; }
-    .story-group.is-single .article-card:not(.is-pending):not([hidden]) .visual { aspect-ratio:1.55; }
-    .story-group.is-single .article-card:not(.is-pending):not([hidden]) .article-body { padding:0; }
-    .article-card[hidden], .story-group[hidden] { display:none !important; }
+    /* トップは大1＋右2、その下は3列×2行 */
+    #grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:27px 22px; }
+    #grid .is-lead { grid-column:span 2; grid-row:span 2; display:flex; flex-direction:column; gap:0; align-items:stretch; padding:0; border:0; }
+    #grid .is-lead .visual { flex:none; min-height:0; aspect-ratio:1.55; }
+    #grid .is-lead .article-body { padding:17px 1px 0; }
+    #grid .is-side { grid-column:3; padding-bottom:10px; border-bottom:1px solid var(--line); }
+    #grid .is-side .visual { aspect-ratio:2.05; }
+    #grid .is-side .article-body { padding-top:9px; }
+    #grid .is-side h4 { font-size:clamp(19px,1.8vw,23px); line-height:1.43; }
+    #grid .is-side .summary { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; font-size:13px; }
+    #grid .is-side .tags { display:none; }
+    #grid .is-pending { display:flex; align-items:flex-end; min-height:285px; padding:24px; }
+    #grid .is-future { background:#edf3ee; border-color:#d9e5db; }
+    #grid .is-pending .article-body { padding:0; }
+    #grid .is-pending h4 { font-size:clamp(20px,2vw,25px); }
+
+    /* 個人別では主役1本の後に、関連と次回枠を3枚並べる */
+    .has-person #grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 20px; }
+    .has-person #grid .person-feature { order:0; grid-column:1 / -1; grid-row:auto; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:28px; align-items:center; max-width:none; min-height:0; padding:0 0 30px; border:0; border-bottom:1px solid var(--line); background:transparent; }
+    .has-person #grid .person-feature .visual { min-height:0; max-height:420px; aspect-ratio:1.7; }
+    .has-person #grid .person-feature .article-body { padding:0; }
+    .has-person #grid .person-feature h4 { font-size:clamp(25px,2.5vw,34px); }
+    .has-person #grid .is-pending.person-feature { display:flex; align-items:center; min-height:300px; padding:38px; background:var(--tint); }
+    .has-person #grid .person-mini { order:2; grid-column:auto; grid-row:auto; display:flex; flex-direction:column; align-items:stretch; gap:0; min-height:0; max-width:none; padding:0; border:0; background:transparent; }
+    .has-person #grid .person-mini .visual { min-height:0; aspect-ratio:1.55; }
+    .has-person #grid .person-mini .article-body { padding:11px 1px 0; }
+    .has-person #grid .person-mini h4 { font-size:17px; line-height:1.5; }
+    .has-person #grid .person-mini .summary, .has-person #grid .person-mini .tags { display:none; }
+    .has-person #grid .is-pending.person-mini { min-height:220px; padding:20px; background:var(--tint); border:1px solid var(--line); }
+    .has-person #grid .is-pending.person-mini .article-body { padding:0; }
+    .library-head { order:1; grid-column:1 / -1; display:flex; align-items:end; justify-content:space-between; gap:12px; margin-top:8px; padding-top:22px; border-top:1px solid var(--ink); }
+    .library-head h4 { margin:0; font-family:var(--mincho); font-size:clamp(22px,2.2vw,28px); }
+    .library-head p { margin:0; color:var(--muted); font-size:12px; }
+    .library-placeholder { order:3; display:flex; flex-direction:column; min-height:220px; padding:20px; border:1px dashed #c7d2c9; background:#f8faf8; color:#68776a; }
+    .library-placeholder span { color:var(--accent); font-size:10px; font-weight:800; letter-spacing:.12em; }
+    .library-placeholder h5 { margin:auto 0 4px; color:#3c5545; font-family:var(--mincho); font-size:20px; line-height:1.45; }
+    .library-placeholder p { margin:0; font-size:12px; }
+    .article-card[hidden], .story-group[hidden], .library-head[hidden], .library-placeholder[hidden] { display:none !important; }
     @media (max-width:900px) {
+      #grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      #grid .is-lead { grid-column:1 / -1; grid-row:auto; }
+      #grid .is-lead .visual { min-height:0; aspect-ratio:1.7; }
+      #grid .is-side { grid-column:auto; }
       .people { grid-template-columns:repeat(7,minmax(0,1fr)); }
       .profile.is-open { grid-template-columns:80px minmax(0,1fr); }
       .profile-avatar { width:80px; height:80px; }
@@ -293,9 +320,22 @@
       .news-identity { margin-top:18px; }
       .news-identity b { font-size:22px; }
       .people { grid-template-columns:repeat(5,minmax(0,1fr)); }
-      .article-card.is-lead { grid-column:1; }
-      .is-medium .visual { aspect-ratio:1.5; }
-      .has-person .article-grid:not(.upcoming-grid), .article-grid.published-grid { grid-template-columns:1fr; }
+      #grid { grid-template-columns:1fr; }
+      #grid .is-lead, #grid .is-side { grid-column:1; grid-row:auto; }
+      #grid .is-lead .visual { min-height:0; aspect-ratio:1.5; }
+      #grid .is-side .visual { aspect-ratio:1.5; }
+      #grid .is-side .tags { display:flex; }
+      #grid .is-pending { min-height:220px; }
+      .has-person #grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px 8px; }
+      .has-person #grid .person-feature { display:flex; flex-direction:column; align-items:stretch; gap:0; }
+      .has-person #grid .person-feature .visual { width:100%; aspect-ratio:1.55; }
+      .has-person #grid .person-feature .article-body { padding:14px 1px 0; }
+      .has-person #grid .is-pending.person-feature { padding:26px; }
+      .has-person #grid .person-mini .visual { aspect-ratio:1; }
+      .has-person #grid .person-mini h4 { font-size:13px; }
+      .has-person #grid .person-mini .episode { font-size:10px; }
+      .has-person #grid .is-pending.person-mini, .library-placeholder { min-height:150px; padding:12px; }
+      .library-placeholder h5 { font-size:15px; }
     }
     @media (max-width:420px) {
       .people { grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px 2px; }
@@ -310,8 +350,13 @@
       .profile-avatar { width:62px; height:62px; font-size:26px; }
       .profile-text strong { font-size:25px; }
       .profile-actions { flex-direction:column; }
-      .story-group.is-single .article-card:not(.is-pending):not([hidden]) { display:flex; flex-direction:column; align-items:stretch; gap:0; }
-      .story-group.is-single .article-card:not(.is-pending):not([hidden]) .article-body { padding:14px 1px 0; }
+      .has-person #grid .person-mini h4 { font-size:12px; }
+      .has-person #grid .person-mini .article-body { padding-top:7px; }
+      .has-person #grid .is-pending.person-mini, .library-placeholder { min-height:128px; padding:9px; }
+      .library-placeholder h5 { font-size:13px; }
+      .library-placeholder p, .library-placeholder span { font-size:9px; }
+      .library-head { display:block; }
+      .library-head p { margin-top:4px; }
     }
     @media (prefers-reduced-motion:reduce) { .fall-slot { opacity:1; animation:none; } }
   </style>
@@ -373,9 +418,9 @@
     </section>
 
     <section class="container" id="stories" aria-labelledby="stories-title">
-      <div class="list-head"><div><span class="section-kicker">STORIES</span><h2 id="stories-title">日々の記録</h2></div><p id="list-note">編集初稿4話・公開済み2話・取材予定2件</p></div>
+      <div class="list-head"><div><span class="section-kicker">STORIES</span><h2 id="stories-title">日々の記録</h2></div><p id="list-note">読める記事6本・取材候補3枠</p></div>
       <div class="story-group" id="draft-group">
-        <div class="group-head"><div><span class="section-kicker">01 ／ FIRST SALES DIVISION</span><h3>まず、読みたい5つの話</h3></div><p>編集初稿4話・公開済み1話</p></div>
+        <div class="group-head"><div><span class="section-kicker">01 ／ FIRST SALES DIVISION</span><h3>第一営業部の記録</h3></div><p>読める記事6本・取材候補3枠</p></div>
         <div class="article-grid" id="grid">
         <a class="article-card is-lead" href="./yoshikawa/" data-who="yoshikawa" data-dept="sales1">
           <figure class="visual"><img src="./assets/yoshikawa.webp" width="500" height="760" alt="吉川弘毅さんの人物ビジュアル" loading="eager" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
@@ -387,7 +432,7 @@
           </div>
         </a>
 
-        <a class="article-card is-medium" href="./kanno/" data-who="kanno" data-dept="sales1">
+        <a class="article-card is-side" href="./kanno/" data-who="kanno" data-dept="sales1">
           <figure class="visual"><div class="visual-type" role="img" aria-label="菅野敬彦の文字ビジュアル"><b>菅野 敬彦</b><small>本人写真は選定中</small></div><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第2話　菅野 敬彦</p>
@@ -397,7 +442,7 @@
           </div>
         </a>
 
-        <a class="article-card" href="./murata/" data-who="murata" data-dept="sales1">
+        <a class="article-card is-side" href="./murata/" data-who="murata" data-dept="sales1">
           <figure class="visual"><img src="./assets/murata.webp" width="560" height="780" alt="村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第3話　村田 峻平</p>
@@ -420,11 +465,6 @@
             <ul class="tags"><li class="dept">第一営業部</li><li>村田 峻平</li></ul>
           </div>
         </a>
-        </div>
-      </div>
-      <div class="story-group" id="published-group">
-        <div class="group-head"><div><span class="section-kicker">02 ／ ARCHIVE</span><h3>これまでに語られたこと</h3></div><p>公開済みの記録</p></div>
-        <div class="article-grid published-grid">
         <a class="article-card" href="https://writeup-inc.github.io/interviews/ai-sales-roundtable/" data-who="tsuchiya yoshikawa murata" data-dept="sales1">
           <figure class="visual"><img src="./assets/roundtable-tsuchiya-yoshikawa-murata.webp" width="1536" height="1024" alt="座談会で話す土屋慧介さん、吉川弘毅さん、村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag">公開中・座談会</figcaption></figure>
           <div class="article-body">
@@ -434,11 +474,7 @@
             <ul class="tags"><li class="dept">第一営業部</li><li>土屋 慧介</li><li>吉川 弘毅</li><li>村田 峻平</li></ul>
           </div>
         </a>
-        </div>
-      </div>
-      <div class="story-group" id="upcoming-group">
-        <div class="group-head"><div><span class="section-kicker">03 ／ NEXT VOICES</span><h3>これから聞きたいこと</h3></div><p>取材準備中</p></div>
-        <div class="upcoming-grid">
+
         <article class="article-card is-pending" data-who="urashima" data-dept="sales1" aria-label="浦嶋剛志の記事候補・取材準備中">
           <div class="article-body"><p class="episode">記事候補　浦嶋 剛志</p><h4>現場の声と、白石の言葉のあいだで</h4><p class="summary">第一営業部のマネージャーとして、部下の挑戦をどう支え、上司の期待をどう現場の言葉に翻訳するのか。葛藤の有無も含めて本人に聞きたい話。（推測）</p></div>
         </article>
@@ -446,6 +482,15 @@
         <article class="article-card is-pending" data-who="tsuchiya" data-dept="sales1" aria-label="土屋慧介の記事候補・取材準備中">
           <div class="article-body"><p class="episode">記事候補　土屋 慧介</p><h4>急がせない提案も、営業の仕事だろうか</h4><p class="summary">飛び込み営業からAIの提案へ。うまく進まなかった商談で、土屋は何を聞き直すのか。休日のキャンプやバイクの話も一緒に。（推測）</p></div>
         </article>
+
+        <article class="article-card is-pending is-future" data-who="" data-dept="sales1" aria-label="次の取材枠・準備中">
+          <div class="article-body"><p class="episode">NEXT STORY ／ 取材枠</p><h4>まだ名刺に書けない、次の話へ</h4><p class="summary">第一営業部から始まった記録は、これから第二営業部や企画開発部門へも広がります。次の取材を準備中です。</p></div>
+        </article>
+
+        <div class="library-head" id="library-head" hidden><div><span class="section-kicker">LIBRARY</span><h4>この人のライブラリー</h4></div><p id="library-note"></p></div>
+        <article class="library-placeholder" hidden aria-label="仕事の続き・取材準備中"><span>NEXT STORY</span><h5>仕事の続き</h5><p>取材準備中</p></article>
+        <article class="library-placeholder" hidden aria-label="チームの声・取材準備中"><span>NEXT STORY</span><h5>チームの声</h5><p>取材準備中</p></article>
+        <article class="library-placeholder" hidden aria-label="ふだんのこと・取材準備中"><span>NEXT STORY</span><h5>ふだんのこと</h5><p>取材準備中</p></article>
         </div>
       </div>
       <p class="empty" id="empty">この部署の記事は、ただいま準備中です。</p>
@@ -504,7 +549,9 @@
     ];
     const cards = [...document.querySelectorAll('#stories .article-card')];
     const storyGroups = [...document.querySelectorAll('.story-group')];
-    const overview = `編集初稿4話・公開済み2話・取材予定${document.querySelectorAll('#upcoming-group .article-card').length}件`;
+    const overview = '読める記事6本・取材候補3枠';
+    const libraryHead = document.getElementById('library-head');
+    const libraryPlaceholders = [...document.querySelectorAll('.library-placeholder')];
     const peopleEl = document.getElementById('people');
     const profile = document.getElementById('profile');
     const empty = document.getElementById('empty');
@@ -587,11 +634,11 @@
       cards.forEach(c => {
         const ok = (!state.who || c.dataset.who.split(' ').includes(state.who)) && (state.dept === 'all' || c.dataset.dept === state.dept);
         c.hidden = !ok; if (ok) shown++;
+        c.classList.remove('person-feature','person-mini');
       });
       storyGroups.forEach(group => {
         const visible = group.querySelectorAll('.article-card:not([hidden])').length;
         group.hidden = !visible;
-        group.classList.toggle('is-single', visible === 1);
       });
       empty.classList.toggle('is-show', shown === 0);
       empty.textContent = state.who ? 'この人の記事は、ただいま準備中です。' : 'この部署の記事は、ただいま準備中です。';
@@ -599,16 +646,24 @@
       profile.classList.toggle('is-open', !!p);
       document.body.classList.toggle('has-person', !!p);
       document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : overview;
-      document.querySelector('#draft-group .group-head h3').textContent = p ? `${p.name}の話` : 'まず、読みたい5つの話';
-      document.querySelector('#draft-group .group-head p').textContent = p ? `記事 ${document.querySelectorAll('#draft-group .article-card:not([hidden])').length}件` : '編集初稿4話・公開済み1話';
-      document.querySelector('#published-group .group-head h3').textContent = p ? 'あわせて読む' : 'これまでに語られたこと';
-      document.querySelector('#published-group .group-head p').textContent = p ? `公開済み ${document.querySelectorAll('#published-group .article-card:not([hidden])').length}件` : '公開済みの記録';
+      document.querySelector('#draft-group .group-head h3').textContent = p ? `${p.name}の話` : '第一営業部の記録';
+      document.querySelector('#draft-group .group-head p').textContent = p ? `記事・候補 ${shown}件` : overview;
+      const visibleCards = cards.filter(c => !c.hidden);
+      const featured = p ? (visibleCards.find(c => c.matches('a[href^="./"]')) || visibleCards.find(c => c.matches('a')) || visibleCards[0]) : null;
+      const related = p ? visibleCards.filter(c => c !== featured) : [];
+      if (featured) featured.classList.add('person-feature');
+      related.forEach(c => c.classList.add('person-mini'));
+      libraryHead.hidden = !p;
+      document.getElementById('library-note').textContent = p ? (related.length ? `関連記事 ${related.length}件・次の取材枠` : '次の取材を準備中') : '';
+      libraryPlaceholders.forEach((c,i) => { c.hidden = !p || i >= Math.max(0,3 - related.length); });
       if (p) {
         document.getElementById('profile-name').textContent = p.name;
         document.getElementById('profile-role').textContent = `株式会社ライトアップ ${p.role}`;
-        document.getElementById('profile-count').textContent = `この人の仕事を知る ${shown}件の記録。商談前の自己紹介にも使えます。`;
+        const readable = visibleCards.filter(c => c.matches('a.article-card')).length;
+        const pending = visibleCards.length - readable;
+        document.getElementById('profile-count').textContent = readable ? `${readable}本の記事${pending ? `と${pending}件の取材候補` : ''}。商談前の自己紹介にも使えます。` : `取材候補${pending}件を準備中。公開後、自己紹介にも使えます。`;
         document.getElementById('profile-avatar').innerHTML = p.img ? `<img src="${p.img}" alt="" width="120" height="120">` : p.name.charAt(0);
-        const firstStory = cards.find(c => !c.hidden && c.matches('a.article-card'));
+        const firstStory = featured?.matches('a.article-card') ? featured : null;
         const read = document.getElementById('profile-read');
         read.hidden = !firstStory;
         if (firstStory) read.href = firstStory.href;
