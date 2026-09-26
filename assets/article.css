@@ -6,3 +6,8 @@
 @media(max-width:900px){.article-shell{grid-template-columns:1fr;gap:0}.article-aside{position:static;display:flex;flex-wrap:wrap;gap:0 18px;padding-bottom:26px}.article-aside b{width:100%;margin-bottom:4px}.article-aside .back{margin-top:13px}.article-hero{grid-template-columns:1fr}.hero-photo{max-width:680px}.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:580px){.container{width:calc(100% - 32px)}.header-nav a:first-child{display:none}.article-hero{padding-top:42px;padding-bottom:32px;gap:34px}.article-hero h1{font-size:clamp(34px,9.2vw,47px)}.dek{font-size:15px}.hero-photo img{aspect-ratio:1.15}.article-shell{padding-top:26px}.article-body h2{margin-top:57px}.related-grid{grid-template-columns:1fr}.article-aside a{margin:7px 0}.article-body blockquote{margin:30px 0}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
 .brand-mark{font-size:12px}.site-footer .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 20px}.site-footer .footer-links{display:flex;gap:18px}.site-footer .footer-links a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}.site-footer .footer-links a:hover{color:var(--ink)}
+
+/* 社内投稿・本人音声からの逐語引用 */
+.article-body blockquote.voice{position:relative;margin:34px 0;padding:22px 25px 20px;border:0;background:#eff5f0;font-family:inherit;font-size:clamp(16px,2vw,19px);line-height:1.9}
+.article-body blockquote.voice::before{content:"本人の言葉";display:block;margin-bottom:9px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.14em}
+.article-body blockquote.voice cite{display:block;margin-top:12px;color:#65746a;font-size:11px;font-style:normal;font-weight:700;text-align:right}

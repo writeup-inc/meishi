@@ -220,6 +220,100 @@
       .list-head p { margin-top:4px; }
     }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .visual img, .news-card { transition:none; } .fall-slot { opacity:1; animation:none; } }
+
+    /* 名刺の実寸比率と、ゆっくり重なる新着演出 */
+    .masthead { padding:20px 0 22px; }
+    .cards { max-width:min(356px,calc(100% - 28px)); height:298px; margin-right:14px; }
+    .fall-slot { width:100%; height:auto; aspect-ratio:91 / 55; animation:card-fall 3.3s cubic-bezier(.18,.62,.23,1) both; animation-delay:calc(.35s + var(--order)*1.25s); }
+    .fall-slot:nth-child(1) { --y:82px; --x:0%; animation:card-first 2.8s cubic-bezier(.18,.62,.23,1) both; animation-delay:0s; }
+    .fall-slot:nth-child(2) { --y:62px; --x:4%; }
+    .fall-slot:nth-child(3) { --y:41px; --x:1%; }
+    .fall-slot:nth-child(4) { --y:20px; --x:5%; }
+    .fall-slot:nth-child(5) { --y:0px; --x:2%; }
+    .news-card { padding:18px 22px 16px; border:1px solid #d5dcd6; border-radius:5px; background:linear-gradient(145deg,#fff 72%,#f7faf8); box-shadow:0 15px 32px -17px rgba(24,48,35,.4); }
+    .news-card::before { content:""; position:absolute; inset:7px; border:1px solid rgba(47,108,88,.11); border-radius:2px; pointer-events:none; }
+    .news-company { order:1; padding-left:28px; color:var(--accent); font-size:11px; letter-spacing:.08em; }
+    .news-mark { top:17px; left:21px; right:auto; bottom:auto; width:21px; height:21px; border-radius:2px; font-size:11px; }
+    .news-identity { order:2; display:block; margin:29px 0 0; padding:0; }
+    .news-identity span { display:block; font-size:11px; }
+    .news-identity b { display:block; margin-top:3px; font-family:var(--mincho); font-size:27px; font-weight:700; line-height:1.25; }
+    .news-rule { order:3; margin:auto 0 9px; background:#c8d5ca; }
+    .news-top { order:4; font-size:10px; color:#596b60; }
+    .news-top time { font-size:10px; }
+    .news-title { order:5; margin-top:4px; font-size:13px; line-height:1.38; color:#263e31; }
+    @keyframes card-fall { 0% { opacity:0; transform:translate3d(0,-180px,0) rotate(-8deg); } 70% { opacity:1; } 89% { transform:translate3d(0,4px,0) rotate(.5deg); } 100% { opacity:1; transform:translate3d(0,0,0) rotate(0); } }
+    @keyframes card-first { 0% { opacity:1; transform:translate3d(0,-42px,0) rotate(-3deg); } 88% { transform:translate3d(0,3px,0) rotate(.4deg); } 100% { opacity:1; transform:translate3d(0,0,0) rotate(0); } }
+
+    /* 20人の顔を画面内で折り返す */
+    .people { display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); gap:8px 4px; overflow:visible; padding:4px 0 10px; scroll-snap-type:none; }
+    .person, .person-placeholder { min-width:0; width:100%; flex:none; scroll-snap-align:none; }
+    .person[aria-pressed="true"] { background:#edf4ee; }
+    .person[aria-pressed="true"] b { color:var(--accent); }
+    .person-placeholder { opacity:.7; }
+    .profile { scroll-margin-top:82px; padding:28px 32px; background:#183a2d; color:#fff; }
+    .profile.is-open { display:grid; grid-template-columns:96px minmax(0,1fr) auto; gap:24px; align-items:center; }
+    .profile-avatar { display:grid; place-items:center; width:96px; height:96px; border-radius:50%; overflow:hidden; background:#dce9df; color:#245841; font-family:var(--mincho); font-size:40px; }
+    .profile-avatar img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 22%; }
+    .profile-kicker { color:#b9d3c0; font-size:10px; font-weight:800; letter-spacing:.14em; }
+    .profile-text p { margin:3px 0 0; font-size:13px; color:#d2e2d6; }
+    .profile-text strong { color:#fff; font-size:30px; line-height:1.4; }
+    .profile-actions { flex-direction:column; align-items:stretch; gap:7px; min-width:240px; }
+    .profile-read, .profile .ghost { display:flex; justify-content:space-between; align-items:center; min-height:38px; padding:6px 12px; border:1px solid rgba(255,255,255,.5); background:transparent; color:#fff; font-size:12px; font-weight:700; text-decoration:none; cursor:pointer; }
+    .profile-read { background:#fff; color:#183a2d; border-color:#fff; font-weight:800; }
+    .profile-read[hidden] { display:none; }
+    .profile .ghost:hover { background:#fff; color:#183a2d; }
+
+    /* 大1・中1・下3 の記事面 */
+    .article-card.is-lead { grid-column:span 2; display:flex; flex-direction:column; gap:0; align-items:stretch; padding:0; border:0; }
+    .article-card.is-lead .article-body { padding:14px 1px 0; }
+    .is-lead .visual { aspect-ratio:1.66; }
+    .is-medium .visual { aspect-ratio:.83; }
+    .is-medium h4 { font-size:clamp(20px,2vw,26px); }
+    .article-grid.published-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .has-person .article-grid:not(.upcoming-grid) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .story-group.is-single .article-grid { grid-template-columns:1fr; }
+    .story-group.is-single .article-card:not(.is-pending):not([hidden]) { display:grid; grid-column:1 / -1; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); gap:28px; align-items:center; max-width:940px; }
+    .story-group.is-single .article-card:not(.is-pending):not([hidden]) .visual { aspect-ratio:1.55; }
+    .story-group.is-single .article-card:not(.is-pending):not([hidden]) .article-body { padding:0; }
+    .article-card[hidden], .story-group[hidden] { display:none !important; }
+    @media (max-width:900px) {
+      .people { grid-template-columns:repeat(7,minmax(0,1fr)); }
+      .profile.is-open { grid-template-columns:80px minmax(0,1fr); }
+      .profile-avatar { width:80px; height:80px; }
+      .profile-actions { grid-column:1 / -1; flex-direction:row; min-width:0; }
+      .profile-actions > * { flex:1; }
+    }
+    @media (max-width:700px) {
+      .cards { max-width:none; height:205px; }
+      .fall-slot { flex:0 0 min(78vw,315px); width:auto; height:auto; aspect-ratio:91 / 55; animation-delay:calc(.25s + var(--mobile-order)*1.1s); }
+      .news-card { transform:none; padding:14px 18px 12px; }
+      .news-card::before { inset:5px; }
+      .news-mark { top:13px; left:17px; }
+      .news-company { padding-left:26px; }
+      .news-identity { margin-top:18px; }
+      .news-identity b { font-size:22px; }
+      .people { grid-template-columns:repeat(5,minmax(0,1fr)); }
+      .article-card.is-lead { grid-column:1; }
+      .is-medium .visual { aspect-ratio:1.5; }
+      .has-person .article-grid:not(.upcoming-grid), .article-grid.published-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:420px) {
+      .people { grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px 2px; }
+      .person, .person-placeholder { min-height:83px; padding:4px 0; gap:5px; }
+      .avatar { width:42px; height:42px; font-size:16px; }
+      .avatar-blank::before { top:10px; left:15px; width:12px; height:12px; }
+      .avatar-blank::after { bottom:7px; left:9px; width:24px; height:13px; }
+      .person b { font-size:10px; letter-spacing:-.04em; }
+      .person-placeholder { font-size:8px; letter-spacing:0; }
+      .profile { padding:22px; }
+      .profile.is-open { grid-template-columns:62px minmax(0,1fr); gap:16px; }
+      .profile-avatar { width:62px; height:62px; font-size:26px; }
+      .profile-text strong { font-size:25px; }
+      .profile-actions { flex-direction:column; }
+      .story-group.is-single .article-card:not(.is-pending):not([hidden]) { display:flex; flex-direction:column; align-items:stretch; gap:0; }
+      .story-group.is-single .article-card:not(.is-pending):not([hidden]) .article-body { padding:14px 1px 0; }
+    }
+    @media (prefers-reduced-motion:reduce) { .fall-slot { opacity:1; animation:none; } }
   </style>
 </head>
 <body>
@@ -278,44 +372,10 @@
       </div>
     </section>
 
-    <section class="container finder" id="finder" aria-labelledby="finder-title">
-      <div class="finder-head">
-        <h2 id="finder-title">人から探す</h2>
-        <div class="dept-tabs" role="group" aria-label="部署で絞り込む" hidden>
-          <button class="dept-tab" type="button" data-dept="all" aria-pressed="true">すべて</button>
-          <button class="dept-tab" type="button" data-dept="sales1" aria-pressed="false">第一営業部</button>
-          <button class="dept-tab" type="button" data-dept="sales2" aria-pressed="false" disabled>第二営業部<small>近日</small></button>
-          <button class="dept-tab" type="button" data-dept="planning" aria-pressed="false" disabled>企画開発部門<small>近日</small></button>
-        </div>
-      </div>
-      <div class="finder-tools">
-        <p id="people-count">6人を掲載中・14枠は準備中</p>
-        <div class="finder-actions">
-          <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
-          <div class="people-nav" role="group" aria-label="担当者一覧を横に送る">
-            <button id="people-prev" type="button" aria-label="前の担当者を見る" aria-controls="people" disabled>←</button>
-            <button id="people-next" type="button" aria-label="次の担当者を見る" aria-controls="people">→</button>
-          </div>
-        </div>
-      </div>
-      <div class="people" id="people" role="group" aria-label="担当者一覧・20枠"></div>
-      <p class="people-empty" id="people-empty" role="status">該当する担当者が見つかりません。</p>
-      <div class="profile" id="profile" aria-live="polite">
-        <div class="profile-text">
-          <p><strong id="profile-name"></strong>　<span id="profile-role"></span></p>
-          <p id="profile-count"></p>
-        </div>
-        <div class="profile-actions">
-          <button class="ghost" type="button" id="copy-url">この人のページのURLをコピー</button>
-          <button class="ghost" type="button" id="clear">絞り込みを解除</button>
-        </div>
-      </div>
-    </section>
-
     <section class="container" id="stories" aria-labelledby="stories-title">
       <div class="list-head"><div><span class="section-kicker">STORIES</span><h2 id="stories-title">日々の記録</h2></div><p id="list-note">編集初稿4話・公開済み2話・取材予定2件</p></div>
       <div class="story-group" id="draft-group">
-        <div class="group-head"><div><span class="section-kicker">01 ／ FIRST SALES DIVISION</span><h3>仕事の中で、聞き直したこと</h3></div><p>第一営業部・編集初稿</p></div>
+        <div class="group-head"><div><span class="section-kicker">01 ／ FIRST SALES DIVISION</span><h3>まず、読みたい5つの話</h3></div><p>編集初稿4話・公開済み1話</p></div>
         <div class="article-grid" id="grid">
         <a class="article-card is-lead" href="./yoshikawa/" data-who="yoshikawa" data-dept="sales1">
           <figure class="visual"><img src="./assets/yoshikawa.webp" width="500" height="760" alt="吉川弘毅さんの人物ビジュアル" loading="eager" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
@@ -327,7 +387,7 @@
           </div>
         </a>
 
-        <a class="article-card" href="./kanno/" data-who="kanno" data-dept="sales1">
+        <a class="article-card is-medium" href="./kanno/" data-who="kanno" data-dept="sales1">
           <figure class="visual"><div class="visual-type" role="img" aria-label="菅野敬彦の文字ビジュアル"><b>菅野 敬彦</b><small>本人写真は選定中</small></div><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第2話　菅野 敬彦</p>
@@ -351,11 +411,6 @@
           <figure class="visual"><img src="./assets/portrait-04.jpg" width="939" height="1600" alt="榎本翔太さんのポートレート" loading="lazy" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body"><p class="episode">第4話　榎本 翔太</p><h4>「便利そう」の先にあるもの</h4><p class="summary">機能を説明しても、導入後の姿が届かない。「分身」というお客様の一言から、榎本の聞き方が変わった。</p><ul class="tags"><li class="dept">第一営業部</li><li>榎本 翔太</li></ul></div>
         </a>
-        </div>
-      </div>
-      <div class="story-group" id="published-group">
-        <div class="group-head"><div><span class="section-kicker">02 ／ ARCHIVE</span><h3>これまでに語られたこと</h3></div><p>公開済みの記録</p></div>
-        <div class="article-grid published-grid">
         <a class="article-card" href="https://writeup-inc.github.io/interviews/murata-referrals/" data-who="murata" data-dept="sales1">
           <figure class="visual"><img src="./assets/murata-shumpei.jpg" width="512" height="512" alt="村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag">公開中</figcaption></figure>
           <div class="article-body">
@@ -365,7 +420,11 @@
             <ul class="tags"><li class="dept">第一営業部</li><li>村田 峻平</li></ul>
           </div>
         </a>
-
+        </div>
+      </div>
+      <div class="story-group" id="published-group">
+        <div class="group-head"><div><span class="section-kicker">02 ／ ARCHIVE</span><h3>これまでに語られたこと</h3></div><p>公開済みの記録</p></div>
+        <div class="article-grid published-grid">
         <a class="article-card" href="https://writeup-inc.github.io/interviews/ai-sales-roundtable/" data-who="tsuchiya yoshikawa murata" data-dept="sales1">
           <figure class="visual"><img src="./assets/roundtable-tsuchiya-yoshikawa-murata.webp" width="1536" height="1024" alt="座談会で話す土屋慧介さん、吉川弘毅さん、村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag">公開中・座談会</figcaption></figure>
           <div class="article-body">
@@ -392,6 +451,40 @@
       <p class="empty" id="empty">この部署の記事は、ただいま準備中です。</p>
     </section>
 
+    <section class="container finder" id="finder" aria-labelledby="finder-title">
+      <div class="finder-head">
+        <h2 id="finder-title">人から探す</h2>
+        <div class="dept-tabs" role="group" aria-label="部署で絞り込む" hidden>
+          <button class="dept-tab" type="button" data-dept="all" aria-pressed="true">すべて</button>
+          <button class="dept-tab" type="button" data-dept="sales1" aria-pressed="false">第一営業部</button>
+          <button class="dept-tab" type="button" data-dept="sales2" aria-pressed="false" disabled>第二営業部<small>近日</small></button>
+          <button class="dept-tab" type="button" data-dept="planning" aria-pressed="false" disabled>企画開発部門<small>近日</small></button>
+        </div>
+      </div>
+      <div class="finder-tools">
+        <p id="people-count">6人を掲載中・14枠は準備中</p>
+        <div class="finder-actions">
+          <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
+        </div>
+      </div>
+      <div class="people" id="people" role="group" aria-label="担当者一覧・20枠"></div>
+      <p class="people-empty" id="people-empty" role="status">該当する担当者が見つかりません。</p>
+      <div class="profile" id="profile" aria-live="polite">
+        <div class="profile-avatar" id="profile-avatar" aria-hidden="true"></div>
+        <div class="profile-text">
+          <span class="profile-kicker">PERSONAL STORIES ／ 名刺の、その先へ</span>
+          <p><strong id="profile-name"></strong></p>
+          <p id="profile-role"></p>
+          <p id="profile-count"></p>
+        </div>
+        <div class="profile-actions">
+          <a class="profile-read" id="profile-read" href="#stories">最初の記事を読む <span aria-hidden="true">↗</span></a>
+          <button class="ghost" type="button" id="copy-url">この人のページのURLをコピー</button>
+          <button class="ghost" type="button" id="clear">絞り込みを解除</button>
+        </div>
+      </div>
+    </section>
+
     <section class="container promise" aria-label="編集について">
       <span class="section-kicker">EDITOR'S NOTE</span>
       <p>新しい4話は社内の記録をもとにした編集初稿で、本人・顧客への内容確認前です。事実の確認が必要な描写には「（推測）」を付けています。</p>
@@ -411,13 +504,11 @@
     ];
     const cards = [...document.querySelectorAll('#stories .article-card')];
     const storyGroups = [...document.querySelectorAll('.story-group')];
-    const overview = `編集初稿${document.querySelectorAll('#draft-group .article-card').length}話・公開済み${document.querySelectorAll('#published-group .article-card').length}話・取材予定${document.querySelectorAll('#upcoming-group .article-card').length}件`;
+    const overview = `編集初稿4話・公開済み2話・取材予定${document.querySelectorAll('#upcoming-group .article-card').length}件`;
     const peopleEl = document.getElementById('people');
     const profile = document.getElementById('profile');
     const empty = document.getElementById('empty');
     const personSearch = document.getElementById('person-search');
-    const peoplePrev = document.getElementById('people-prev');
-    const peopleNext = document.getElementById('people-next');
     const TOTAL_SLOTS = 20;
     const DEPT_LABELS = { all:'担当者', sales1:'第一営業部', sales2:'第二営業部', planning:'企画開発部門' };
     let state = { who:null, dept:'all' };
@@ -457,15 +548,6 @@
       else render();
     }));
     personSearch.addEventListener('input', render);
-    function updatePeopleNav() {
-      peoplePrev.disabled = peopleEl.scrollLeft < 2;
-      peopleNext.disabled = peopleEl.scrollLeft + peopleEl.clientWidth >= peopleEl.scrollWidth - 2;
-    }
-    peopleEl.addEventListener('scroll', updatePeopleNav, {passive:true});
-    window.addEventListener('resize', updatePeopleNav);
-    [peoplePrev, peopleNext].forEach((button, direction) => button.addEventListener('click', () => {
-      peopleEl.scrollBy({left:(direction ? 1 : -1) * Math.max(peopleEl.clientWidth * .75, 240),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
-    }));
     document.getElementById('clear').addEventListener('click', () => setWho(null, true));
     document.getElementById('copy-url').addEventListener('click', async e => {
       const btn = e.currentTarget, label = btn.textContent;
@@ -478,18 +560,18 @@
       state.who = id;
       const url = new URL(location.href);
       id ? url.searchParams.set('who', id) : url.searchParams.delete('who');
+      if (scroll) url.hash = id ? 'profile' : '';
       history.replaceState(null, '', url);
       render();
-      if (id && !scroll) requestAnimationFrame(() => {
-        const button = personButtons.get(id), strip = peopleEl.getBoundingClientRect(), face = button?.getBoundingClientRect();
-        if (face && (face.left < strip.left || face.right > strip.right)) {
-          peopleEl.scrollLeft += face.left - strip.left - (strip.width - face.width) / 2;
-        }
-      });
-      if (scroll && id) document.getElementById('finder').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      if (scroll && id) profile.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start' });
     }
 
     function render() {
+      const main = document.querySelector('main');
+      const finderSection = document.getElementById('finder');
+      const storiesSection = document.getElementById('stories');
+      if (state.who && finderSection.nextElementSibling !== storiesSection) main.insertBefore(finderSection, storiesSection);
+      if (!state.who && storiesSection.nextElementSibling !== finderSection) main.insertBefore(storiesSection, finderSection);
       document.querySelectorAll('.dept-tab[data-dept]').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.dept === state.dept)));
       const query = personSearch.value.replace(/\s+/g, '').toLocaleLowerCase('ja');
       const matching = PEOPLE.filter(p => (state.dept === 'all' || p.dept === state.dept) && p.name.replace(/\s+/g, '').toLocaleLowerCase('ja').includes(query));
@@ -498,32 +580,43 @@
         b.hidden = !visibleIds.has(id);
         b.setAttribute('aria-pressed', String(id === state.who));
       });
-      pendingSlots.forEach(slot => { slot.hidden = !!query || state.dept !== 'all'; });
-      document.getElementById('people-count').textContent = query ? `${matching.length}人が見つかりました` : state.dept === 'all' ? `${PEOPLE.length}人を掲載中${pendingSlots.length ? `・${pendingSlots.length}枠は準備中` : ''}` : `${DEPT_LABELS[state.dept]} ${matching.length}人を掲載中`;
+      pendingSlots.forEach(slot => { slot.hidden = !!query || state.dept !== 'all' || !!state.who; });
+      document.getElementById('people-count').textContent = query ? `${matching.length}人が見つかりました` : state.who ? `${PEOPLE.length}人から選択中` : state.dept === 'all' ? `${PEOPLE.length}人を掲載中${pendingSlots.length ? `・${pendingSlots.length}枠は準備中` : ''}` : `${DEPT_LABELS[state.dept]} ${matching.length}人を掲載中`;
       document.getElementById('people-empty').classList.toggle('is-show', matching.length === 0);
-      if (query) peopleEl.scrollLeft = 0;
-      requestAnimationFrame(updatePeopleNav);
       let shown = 0;
       cards.forEach(c => {
         const ok = (!state.who || c.dataset.who.split(' ').includes(state.who)) && (state.dept === 'all' || c.dataset.dept === state.dept);
         c.hidden = !ok; if (ok) shown++;
       });
-      storyGroups.forEach(group => { group.hidden = !group.querySelector('.article-card:not([hidden])'); });
+      storyGroups.forEach(group => {
+        const visible = group.querySelectorAll('.article-card:not([hidden])').length;
+        group.hidden = !visible;
+        group.classList.toggle('is-single', visible === 1);
+      });
       empty.classList.toggle('is-show', shown === 0);
       empty.textContent = state.who ? 'この人の記事は、ただいま準備中です。' : 'この部署の記事は、ただいま準備中です。';
       const p = PEOPLE.find(x => x.id === state.who);
       profile.classList.toggle('is-open', !!p);
+      document.body.classList.toggle('has-person', !!p);
       document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : overview;
       if (p) {
         document.getElementById('profile-name').textContent = p.name;
         document.getElementById('profile-role').textContent = `株式会社ライトアップ ${p.role}`;
-        document.getElementById('profile-count').textContent = `この人に関する記事・候補が${shown}件あります。`;
+        document.getElementById('profile-count').textContent = `この人の仕事を知る ${shown}件の記録。商談前の自己紹介にも使えます。`;
+        document.getElementById('profile-avatar').innerHTML = p.img ? `<img src="${p.img}" alt="" width="120" height="120">` : p.name.charAt(0);
+        const firstStory = cards.find(c => !c.hidden && c.matches('a.article-card'));
+        const read = document.getElementById('profile-read');
+        read.hidden = !firstStory;
+        if (firstStory) read.href = firstStory.href;
       }
       document.querySelectorAll('.fall-slot').forEach(slot => slot.classList.toggle('is-selected', !!p && slot.dataset.who === p.id));
     }
 
     const init = new URL(location.href).searchParams.get('who');
-    if (init && PEOPLE.some(p => p.id === init)) setWho(init, false); else render();
+    if (init && PEOPLE.some(p => p.id === init)) {
+      setWho(init, false);
+      if (!location.hash || location.hash === '#profile') requestAnimationFrame(() => profile.scrollIntoView({behavior:'auto',block:'start'}));
+    } else render();
   </script>
 </body>
 </html>
