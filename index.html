@@ -405,11 +405,6 @@
         </div>
         <div class="mast-art">
         <div class="cards" aria-label="新着記事の名刺。各名刺から記事を開けます">
-          <div class="fall-slot" data-who="murata"><a class="news-card" href="./murata-referrals/">
-            <span class="news-top"><span><time datetime="2026-09-10">9月10日</time> 収録</span><span class="news-type">番外編・公開中</span></span>
-            <strong class="news-title">紹介の連鎖は、どう生まれたのか。</strong><span class="news-rule" aria-hidden="true"></span>
-            <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>第一営業部</span><b>村田 峻平</b></span><span class="news-mark" aria-hidden="true">W</span>
-          </a></div>
           <div class="fall-slot" data-who="enomoto"><a class="news-card" href="./enomoto/">
             <span class="news-top"><span><time datetime="2026-09-26">9月26日</time> 更新</span><span class="news-type">第4話</span></span>
             <strong class="news-title">「便利そう」の先にあるもの</strong><span class="news-rule" aria-hidden="true"></span>
@@ -430,17 +425,31 @@
             <strong class="news-title">提案をいったん引っ込めて、聞き直した日</strong><span class="news-rule" aria-hidden="true"></span>
             <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>第一営業部</span><b>吉川 弘毅</b></span><span class="news-mark" aria-hidden="true">W</span>
           </a></div>
+          <div class="fall-slot" data-who="shiraishi"><a class="news-card" href="./shiraishi-memory/">
+            <span class="news-top"><span><time datetime="2026-09-26">9月26日</time> 更新</span><span class="news-type">タケルの記録</span></span>
+            <strong class="news-title">営業の数字は覚えている。でもサウナの「縦」は思い出せない</strong><span class="news-rule" aria-hidden="true"></span>
+            <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>代表</span><b>白石 崇</b></span><span class="news-mark" aria-hidden="true">W</span>
+          </a></div>
         </div>
         </div>
       </div>
     </section>
 
     <section class="container" id="stories" aria-labelledby="stories-title">
-      <div class="list-head"><div><span class="section-kicker">STORIES</span><h2 id="stories-title">日々の記録</h2></div><p id="list-note">読める記事6本・取材候補3枠</p></div>
+      <div class="list-head"><div><span class="section-kicker">STORIES</span><h2 id="stories-title">日々の記録</h2></div><p id="list-note">読める記事7本・取材候補3枠</p></div>
       <div class="story-group" id="draft-group">
-        <div class="group-head"><div><span class="section-kicker">01 ／ FIRST SALES DIVISION</span><h3>第一営業部の記録</h3></div><p>読める記事6本・取材候補3枠</p></div>
+        <div class="group-head"><div><span class="section-kicker">01 ／ PEOPLE &amp; STORIES</span><h3>営業の現場から</h3></div><p>読める記事7本・取材候補3枠</p></div>
         <div class="article-grid" id="grid">
-        <a class="article-card is-lead" href="./yoshikawa/" data-who="yoshikawa" data-dept="sales1">
+        <a class="article-card is-lead" href="./shiraishi-memory/" data-who="shiraishi" data-dept="leadership">
+          <figure class="visual"><img src="./assets/portrait-07.jpg" width="600" height="600" alt="白石崇さんの実写ポートレート" loading="eager" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
+          <div class="article-body">
+            <p class="episode">タケルの記録　第1回　白石 崇</p>
+            <h4>営業の数字は覚えている。<br>でもサウナの「縦」は思い出せない</h4>
+            <p class="summary">会議では細かな数字を覚えている白石さん。数字と一緒に残す「なぜ？」の話を聞いたあと、サウナで一文字だけが残ったアイデアの話になった。AI社員タケルの観察記録。</p>
+            <ul class="tags"><li class="dept">代表</li><li>白石 崇</li><li>AI社員タケル</li></ul>
+          </div>
+        </a>
+        <a class="article-card is-side" href="./yoshikawa/" data-who="yoshikawa" data-dept="sales1">
           <figure class="visual"><img src="./assets/yoshikawa.webp" width="500" height="760" alt="吉川弘毅さんの人物ビジュアル" loading="eager" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第1話　吉川 弘毅</p>
@@ -460,7 +469,7 @@
           </div>
         </a>
 
-        <a class="article-card is-side" href="./murata/" data-who="murata" data-dept="sales1">
+        <a class="article-card" href="./murata/" data-who="murata" data-dept="sales1">
           <figure class="visual"><img src="./assets/murata.webp" width="560" height="780" alt="村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第3話　村田 峻平</p>
@@ -520,12 +529,13 @@
         <div class="dept-tabs" role="group" aria-label="部署で絞り込む" hidden>
           <button class="dept-tab" type="button" data-dept="all" aria-pressed="true">すべて</button>
           <button class="dept-tab" type="button" data-dept="sales1" aria-pressed="false">第一営業部</button>
+          <button class="dept-tab" type="button" data-dept="leadership" aria-pressed="false">代表</button>
           <button class="dept-tab" type="button" data-dept="sales2" aria-pressed="false" disabled>第二営業部<small>近日</small></button>
           <button class="dept-tab" type="button" data-dept="planning" aria-pressed="false" disabled>企画開発部門<small>近日</small></button>
         </div>
       </div>
       <div class="finder-tools">
-        <p id="people-count">6人を掲載中・14枠は準備中</p>
+        <p id="people-count">7人を掲載中・13枠は準備中</p>
         <div class="finder-actions">
           <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
         </div>
@@ -552,7 +562,7 @@
 
     <section class="container promise" aria-label="編集について">
       <span class="section-kicker">EDITOR'S NOTE</span>
-      <p>新しい4話と6人の他己紹介は社内の記録をもとにした編集初稿で、本人・顧客への内容確認前です。人物紹介の引用以外はタケルの印象として書いています。事実の確認が必要な描写には「（推測）」を付けています。</p>
+      <p>新しい4話と6人の他己紹介は社内の記録をもとにした編集初稿です。白石崇の第1回は提供された取材内容から構成し、議事録原本と本人への確認前です。人物紹介の引用以外はタケルの印象として書いています。事実の確認が必要な描写には「（推測）」を付けています。</p>
     </section>
   </main>
 
@@ -565,11 +575,12 @@
       { id:'murata',    name:'村田 峻平', role:'第一営業部', dept:'sales1', img:'./assets/murata.webp', intro:'紹介される重みを知り、帰りの車まで楽しむ。タケルから見た村田。' },
       { id:'enomoto',   name:'榎本 翔太', role:'第一営業部', dept:'sales1', img:'./assets/portrait-04.jpg', intro:'飛び込み営業と、緑の多い公園。タケルが気になった榎本の二つの顔。' },
       { id:'urashima',  name:'浦嶋 剛志', role:'第一営業部 マネージャー', dept:'sales1', img:'', intro:'自分の成果より、部下の「受注秘話」を聞きたがる人。' },
-      { id:'tsuchiya',  name:'土屋 慧介', role:'第一営業部 リーダー', dept:'sales1', img:'./assets/portrait-05.jpg', intro:'お客様の懸念を置き去りにしない。タケルの観察メモ。' }
+      { id:'tsuchiya',  name:'土屋 慧介', role:'第一営業部 リーダー', dept:'sales1', img:'./assets/portrait-05.jpg', intro:'お客様の懸念を置き去りにしない。タケルの観察メモ。' },
+      { id:'shiraishi', name:'白石 崇', role:'代表', dept:'leadership', img:'./assets/portrait-07.jpg', about:'./shiraishi-memory/', intro:'数字の「なぜ？」は残る。でもサウナの「縦」はまだ謎。タケルが聞いた、白石の記憶の話。' }
     ];
     const cards = [...document.querySelectorAll('#stories .article-card')];
     const storyGroups = [...document.querySelectorAll('.story-group')];
-    const overview = '読める記事6本・取材候補3枠';
+    const overview = '読める記事7本・取材候補3枠';
     const libraryHead = document.getElementById('library-head');
     const libraryPlaceholders = [...document.querySelectorAll('.library-placeholder')];
     const peopleEl = document.getElementById('people');
@@ -577,7 +588,7 @@
     const empty = document.getElementById('empty');
     const personSearch = document.getElementById('person-search');
     const TOTAL_SLOTS = 20;
-    const DEPT_LABELS = { all:'担当者', sales1:'第一営業部', sales2:'第二営業部', planning:'企画開発部門' };
+    const DEPT_LABELS = { all:'担当者', sales1:'第一営業部', leadership:'代表', sales2:'第二営業部', planning:'企画開発部門' };
     let state = { who:null, dept:'all' };
     const personButtons = new Map();
 
@@ -618,7 +629,8 @@
     document.getElementById('clear').addEventListener('click', () => setWho(null, true));
     document.getElementById('copy-url').addEventListener('click', async e => {
       const btn = e.currentTarget, label = btn.textContent;
-      const personUrl = new URL(`./people/${state.who}/`, location.href).href;
+      const selected = PEOPLE.find(p => p.id === state.who);
+      const personUrl = new URL(selected?.about || `./people/${state.who}/`, location.href).href;
       try { await navigator.clipboard.writeText(personUrl); btn.textContent = 'コピーしました'; }
       catch { btn.textContent = 'アドレス欄のURLをお使いください'; }
       setTimeout(() => btn.textContent = label, 2200);
@@ -667,7 +679,7 @@
       profile.classList.toggle('is-open', !!p);
       document.body.classList.toggle('has-person', !!p);
       document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : overview;
-      document.querySelector('#draft-group .group-head h3').textContent = p ? `${p.name}の話` : '第一営業部の記録';
+      document.querySelector('#draft-group .group-head h3').textContent = p ? `${p.name}の話` : '営業の現場から';
       document.querySelector('#draft-group .group-head p').textContent = p ? `記事・候補 ${shown}件` : overview;
       const visibleCards = cards.filter(c => !c.hidden);
       const featured = p ? (visibleCards.find(c => c.matches('a[href^="./"]')) || visibleCards.find(c => c.matches('a')) || visibleCards[0]) : null;
@@ -684,7 +696,8 @@
         const pending = visibleCards.length - readable;
         document.getElementById('profile-count').textContent = readable ? `${readable}本の記事${pending ? `と${pending}件の取材候補` : ''}。商談前の自己紹介にも使えます。` : `記事は取材準備中。タケルの他己紹介は読めます。`;
         document.getElementById('profile-intro').textContent = p.intro;
-        document.getElementById('profile-about').href = `./people/${p.id}/`;
+        document.getElementById('profile-about').href = p.about || `./people/${p.id}/`;
+        document.getElementById('profile-about').firstChild.textContent = p.about ? 'タケルの観察記事を読む ' : 'タケルの他己紹介を読む ';
         document.getElementById('profile-avatar').innerHTML = p.img ? `<img src="${p.img}" alt="" width="120" height="120">` : p.name.charAt(0);
         const firstStory = featured?.matches('a.article-card') ? featured : null;
         const read = document.getElementById('profile-read');
