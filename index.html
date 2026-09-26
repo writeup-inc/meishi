@@ -263,6 +263,9 @@
     .profile-read, .profile .ghost { display:flex; justify-content:space-between; align-items:center; min-height:38px; padding:6px 12px; border:1px solid rgba(255,255,255,.5); background:transparent; color:#fff; font-size:12px; font-weight:700; text-decoration:none; cursor:pointer; }
     .profile-read { background:#fff; color:#183a2d; border-color:#fff; font-weight:800; }
     .profile-read[hidden] { display:none; }
+    .profile-intro { max-width:48em; margin-top:11px !important; color:#eef7ef !important; line-height:1.75; }
+    .profile-about { display:flex; justify-content:space-between; align-items:center; min-height:38px; padding:6px 12px; border:1px solid rgba(255,255,255,.5); color:#fff; font-size:12px; font-weight:800; text-decoration:none; }
+    .profile-about:hover { background:#fff; color:#183a2d; }
     .profile .ghost:hover { background:#fff; color:#183a2d; }
 
     /* トップは大1＋右2、その下は3列×2行 */
@@ -532,14 +535,16 @@
       <div class="profile" id="profile" aria-live="polite">
         <div class="profile-avatar" id="profile-avatar" aria-hidden="true"></div>
         <div class="profile-text">
-          <span class="profile-kicker">PERSONAL STORIES ／ 名刺の、その先へ</span>
+          <span class="profile-kicker">TAKERU'S NOTES ／ 名刺の、その先へ</span>
           <p><strong id="profile-name"></strong></p>
           <p id="profile-role"></p>
           <p id="profile-count"></p>
+          <p class="profile-intro" id="profile-intro"></p>
         </div>
         <div class="profile-actions">
+          <a class="profile-about" id="profile-about" href="./people/yoshikawa/">タケルの他己紹介を読む <span aria-hidden="true">↗</span></a>
           <a class="profile-read" id="profile-read" href="#stories">最初の記事を読む <span aria-hidden="true">↗</span></a>
-          <button class="ghost" type="button" id="copy-url">この人のページのURLをコピー</button>
+          <button class="ghost" type="button" id="copy-url">この人のURLをコピー</button>
           <button class="ghost" type="button" id="clear">絞り込みを解除</button>
         </div>
       </div>
@@ -547,7 +552,7 @@
 
     <section class="container promise" aria-label="編集について">
       <span class="section-kicker">EDITOR'S NOTE</span>
-      <p>新しい4話は社内の記録をもとにした編集初稿で、本人・顧客への内容確認前です。事実の確認が必要な描写には「（推測）」を付けています。</p>
+      <p>新しい4話と6人の他己紹介は社内の記録をもとにした編集初稿で、本人・顧客への内容確認前です。人物紹介の引用以外はタケルの印象として書いています。事実の確認が必要な描写には「（推測）」を付けています。</p>
     </section>
   </main>
 
@@ -555,12 +560,12 @@
 
   <script>
     const PEOPLE = [
-      { id:'yoshikawa', name:'吉川 弘毅', role:'第一営業部', dept:'sales1', img:'./assets/yoshikawa.webp' },
-      { id:'kanno',     name:'菅野 敬彦', role:'第一営業部', dept:'sales1', img:'' },
-      { id:'murata',    name:'村田 峻平', role:'第一営業部', dept:'sales1', img:'./assets/murata.webp' },
-      { id:'enomoto',   name:'榎本 翔太', role:'第一営業部', dept:'sales1', img:'./assets/portrait-04.jpg' },
-      { id:'urashima',  name:'浦嶋 剛志', role:'第一営業部 マネージャー', dept:'sales1', img:'' },
-      { id:'tsuchiya',  name:'土屋 慧介', role:'第一営業部 リーダー', dept:'sales1', img:'./assets/portrait-05.jpg' }
+      { id:'yoshikawa', name:'吉川 弘毅', role:'第一営業部', dept:'sales1', img:'./assets/yoshikawa.webp', intro:'失敗を隠さず、次の問いへ。タケルが社内の言葉から見た吉川。' },
+      { id:'kanno',     name:'菅野 敬彦', role:'第一営業部', dept:'sales1', img:'', intro:'数字に強く、たまに言葉が飛ぶ。タケルが覚えている菅野。' },
+      { id:'murata',    name:'村田 峻平', role:'第一営業部', dept:'sales1', img:'./assets/murata.webp', intro:'紹介される重みを知り、帰りの車まで楽しむ。タケルから見た村田。' },
+      { id:'enomoto',   name:'榎本 翔太', role:'第一営業部', dept:'sales1', img:'./assets/portrait-04.jpg', intro:'飛び込み営業と、緑の多い公園。タケルが気になった榎本の二つの顔。' },
+      { id:'urashima',  name:'浦嶋 剛志', role:'第一営業部 マネージャー', dept:'sales1', img:'', intro:'自分の成果より、部下の「受注秘話」を聞きたがる人。' },
+      { id:'tsuchiya',  name:'土屋 慧介', role:'第一営業部 リーダー', dept:'sales1', img:'./assets/portrait-05.jpg', intro:'お客様の懸念を置き去りにしない。タケルの観察メモ。' }
     ];
     const cards = [...document.querySelectorAll('#stories .article-card')];
     const storyGroups = [...document.querySelectorAll('.story-group')];
@@ -613,7 +618,8 @@
     document.getElementById('clear').addEventListener('click', () => setWho(null, true));
     document.getElementById('copy-url').addEventListener('click', async e => {
       const btn = e.currentTarget, label = btn.textContent;
-      try { await navigator.clipboard.writeText(location.href); btn.textContent = 'コピーしました'; }
+      const personUrl = new URL(`./people/${state.who}/`, location.href).href;
+      try { await navigator.clipboard.writeText(personUrl); btn.textContent = 'コピーしました'; }
       catch { btn.textContent = 'アドレス欄のURLをお使いください'; }
       setTimeout(() => btn.textContent = label, 2200);
     });
@@ -676,7 +682,9 @@
         document.getElementById('profile-role').textContent = `株式会社ライトアップ ${p.role}`;
         const readable = visibleCards.filter(c => c.matches('a.article-card')).length;
         const pending = visibleCards.length - readable;
-        document.getElementById('profile-count').textContent = readable ? `${readable}本の記事${pending ? `と${pending}件の取材候補` : ''}。商談前の自己紹介にも使えます。` : `取材候補${pending}件を準備中。公開後、自己紹介にも使えます。`;
+        document.getElementById('profile-count').textContent = readable ? `${readable}本の記事${pending ? `と${pending}件の取材候補` : ''}。商談前の自己紹介にも使えます。` : `記事は取材準備中。タケルの他己紹介は読めます。`;
+        document.getElementById('profile-intro').textContent = p.intro;
+        document.getElementById('profile-about').href = `./people/${p.id}/`;
         document.getElementById('profile-avatar').innerHTML = p.img ? `<img src="${p.img}" alt="" width="120" height="120">` : p.name.charAt(0);
         const firstStory = featured?.matches('a.article-card') ? featured : null;
         const read = document.getElementById('profile-read');
