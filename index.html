@@ -271,12 +271,12 @@
     /* トップは大1＋右2、その下は3列×2行 */
     #grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:27px 22px; }
     #grid .is-lead { grid-column:span 2; grid-row:span 2; display:flex; flex-direction:column; gap:0; align-items:stretch; padding:0; border:0; }
-    #grid .is-lead .visual { flex:none; min-height:0; aspect-ratio:1.55; }
-    #grid .is-lead .article-body { padding:17px 1px 0; }
+    #grid .is-lead .visual { flex:none; min-height:0; aspect-ratio:2; }
+    #grid .is-lead .article-body { padding:13px 1px 0; }
     #grid .is-side { grid-column:3; padding-bottom:10px; border-bottom:1px solid var(--line); }
     #grid .is-side .visual { aspect-ratio:2.05; }
     #grid .is-side .article-body { padding-top:9px; }
-    #grid .is-side h4 { font-size:clamp(19px,1.8vw,23px); line-height:1.43; }
+    #grid .is-side h4 { font-size:clamp(16px,1.5vw,18px); line-height:1.45; }
     #grid .is-side .summary { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; font-size:13px; }
     #grid .is-side .tags { display:none; }
     #grid .is-pending { display:flex; align-items:flex-end; min-height:285px; padding:24px; }
@@ -311,6 +311,7 @@
       #grid .is-lead { grid-column:1 / -1; grid-row:auto; }
       #grid .is-lead .visual { min-height:0; aspect-ratio:1.7; }
       #grid .is-side { grid-column:auto; }
+      #grid .is-side h4 { font-size:clamp(18px,2.3vw,21px); }
       .people { grid-template-columns:repeat(7,minmax(0,1fr)); }
       .profile.is-open { grid-template-columns:80px minmax(0,1fr); }
       .profile-avatar { width:80px; height:80px; }
@@ -332,6 +333,7 @@
       #grid .is-lead, #grid .is-side { grid-column:1; grid-row:auto; }
       #grid .is-lead .visual { min-height:0; aspect-ratio:1.5; }
       #grid .is-side .visual { aspect-ratio:1.5; }
+      #grid .is-side h4 { font-size:clamp(19px,5vw,22px); }
       #grid .is-side .tags { display:flex; }
       #grid .is-pending { min-height:220px; }
       .has-person #grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px 8px; }
@@ -453,7 +455,7 @@
           <figure class="visual"><img src="./assets/yoshikawa.webp" width="500" height="760" alt="吉川弘毅さんの人物ビジュアル" loading="eager" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第1話　吉川 弘毅</p>
-            <h4>提案をいったん<br>引っ込めて、<br>聞き直した日</h4>
+            <h4>提案をいったん引っ込めて、聞き直した日</h4>
             <p class="summary">見積の漏れに答えを出せたと思った。白石への相談で気づいたのは、まだ聞けていないこと。提案をいったん引っ込め、もう一度お客様の話を聞いた日の記録。</p>
             <ul class="tags"><li class="dept">第一営業部</li><li>吉川 弘毅</li></ul>
           </div>
