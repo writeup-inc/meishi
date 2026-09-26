@@ -53,16 +53,17 @@
     .header-nav a:hover { color:var(--ink); }
 
     /* ── 誌面の顔（余白を使うヘッダー） ── */
-    .masthead { padding:clamp(44px,6.5vw,92px) 0 clamp(40px,5vw,64px); }
+    .masthead { padding:clamp(38px,5vw,72px) 0 clamp(34px,4vw,52px); }
     .mast-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:clamp(28px,5vw,72px); align-items:center; }
+    .mast-art { min-width:0; }
     .issue { display:flex; flex-wrap:wrap; gap:6px 14px; margin:0 0 22px; color:var(--muted); font-size:12px; font-weight:700; letter-spacing:.08em; }
     .issue b { color:var(--accent); }
     .issue span + span::before { content:"／"; margin-right:14px; color:#c8c8c8; }
     .title { margin:0; font-family:var(--mincho); font-weight:700; font-size:clamp(44px,7.6vw,96px); line-height:1.12; letter-spacing:.02em; }
     .title .nobr { display:inline-block; }
     .subtitle { margin:22px 0 0; font-family:var(--mincho); font-size:clamp(17px,1.9vw,22px); font-weight:500; letter-spacing:.06em; }
-    .lead { max-width:30em; margin:18px 0 0; color:#555; font-size:15px; line-height:1.9; }
-    .mast-cta { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; margin-top:28px; }
+    .lead { max-width:29em; margin:18px 0 0; color:#4c554f; font-size:16px; line-height:1.9; }
+    .mast-cta { display:flex; flex-wrap:wrap; gap:12px 20px; align-items:center; margin-top:24px; }
     .btn { display:inline-flex; align-items:center; gap:8px; min-height:46px; padding:0 20px; border:1px solid var(--ink); background:var(--ink); color:#fff; font-size:14px; font-weight:800; text-decoration:none; }
     .btn:hover { background:var(--accent); border-color:var(--accent); }
     .text-link { font-size:13px; font-weight:700; color:var(--muted); text-decoration:none; border-bottom:1px solid #ccc; }
@@ -79,13 +80,19 @@
     .cf-dept { margin:0; color:var(--muted); font-size:12px; font-weight:700; }
     .cf-name { margin:2px 0 0; font-size:clamp(22px,2.6vw,30px); font-weight:800; letter-spacing:.12em; transition:opacity .45s ease; }
     .cf-foot { font-size:12px; color:#9a9a9a; letter-spacing:.04em; }
-    .card-note { position:absolute; left:2%; bottom:0; margin:0; color:var(--muted); font-size:12px; }
+    .hero-feature { display:flex; justify-content:space-between; gap:18px; align-items:end; margin:10px 0 0 auto; padding:15px 2px 0; max-width:500px; border-top:1px solid var(--line); color:inherit; text-decoration:none; transition:opacity .35s ease; }
+    .hero-feature.is-changing { opacity:0; }
+    .hero-feature small { display:block; color:var(--accent); font-size:11px; font-weight:800; letter-spacing:.12em; }
+    .hero-feature b { display:block; margin-top:5px; font-family:var(--mincho); font-size:17px; line-height:1.5; }
+    .hero-feature span:last-child { color:var(--accent); font-size:21px; }
+    .hero-feature:hover b { text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
 
     /* ── 人から探す ── */
-    .finder { border-top:1px solid var(--ink); padding:26px 0 30px; }
+    .finder { border-top:1px solid var(--ink); padding:28px 0 42px; }
     .finder-head { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 24px; margin-bottom:18px; }
-    .finder-head h2 { margin:0; font-size:17px; letter-spacing:.02em; }
+    .finder-head h2 { margin:0; font-family:var(--mincho); font-size:clamp(24px,2.3vw,31px); line-height:1.35; letter-spacing:.02em; }
     .dept-tabs { display:flex; flex-wrap:wrap; gap:8px; }
+    .dept-tabs[hidden] { display:none; }
     .dept-tab { min-height:36px; padding:0 14px; border:1px solid var(--line); background:#fff; font-size:13px; font-weight:700; cursor:pointer; }
     .dept-tab[aria-pressed="true"] { border-color:var(--ink); background:var(--ink); color:#fff; }
     .dept-tab:disabled { color:#a5a5a5; cursor:default; background:#fafafa; }
@@ -118,18 +125,30 @@
     .ghost { min-height:44px; padding:0 16px; border:1px solid var(--ink); background:#fff; font-size:13px; font-weight:800; cursor:pointer; }
     .ghost:hover { background:var(--ink); color:#fff; }
 
-    /* ── 記事一覧（Interviews のカードを踏襲） ── */
-    .list-head { display:flex; align-items:end; justify-content:space-between; gap:24px; padding:21px 0 15px; border-top:1px solid var(--line); }
-    .list-head h2 { margin:0; font-size:15px; letter-spacing:-.02em; }
-    .list-head p { margin:0; color:var(--muted); font-size:12px; }
-    .article-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:34px 22px; padding-bottom:72px; }
+    /* ── 読む順番がわかる誌面 ── */
+    .list-head { display:flex; align-items:end; justify-content:space-between; gap:20px; padding:27px 0 25px; border-top:1px solid var(--ink); }
+    .section-kicker { display:block; margin:0 0 7px; color:var(--accent); font-size:11px; font-weight:800; letter-spacing:.16em; }
+    .list-head h2, .group-head h3 { margin:0; font-family:var(--mincho); font-size:clamp(26px,2.8vw,38px); line-height:1.35; letter-spacing:.01em; }
+    .list-head p { margin:0; color:var(--muted); font-size:13px; }
+    .story-group[hidden] { display:none; }
+    .group-head { display:flex; align-items:end; justify-content:space-between; flex-wrap:wrap; gap:10px 22px; margin:0 0 22px; }
+    .group-head h3 { font-size:clamp(22px,2.1vw,29px); }
+    .group-head p { margin:0; color:var(--muted); font-size:13px; }
+    .story-group + .story-group { border-top:1px solid var(--line); padding-top:34px; }
+    .article-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:36px 22px; padding-bottom:52px; }
+    .article-grid.published-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .upcoming-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; padding-bottom:56px; }
     .article-card { display:flex; flex-direction:column; min-width:0; color:inherit; text-decoration:none; }
     .article-card[hidden] { display:none; }
-    .article-card.is-lead { grid-column:span 2; }
-    .article-card.is-pending { cursor:default; }
-    .article-card.is-pending .article-body { opacity:.83; }
+    .article-card.is-lead { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1.28fr) minmax(0,.72fr); gap:clamp(22px,3vw,42px); align-items:end; padding-bottom:31px; border-bottom:1px solid var(--line); }
+    .article-card.is-lead .article-body { padding:0 0 4px; }
+    .article-card.is-pending { display:block; padding:22px 24px; border:1px solid var(--line); background:var(--tint); cursor:default; }
+    .article-card[hidden] { display:none; }
+    .article-card.is-pending .article-body { padding:0; }
+    .article-card.is-pending .summary { margin-top:9px; }
+    .article-card.is-pending h4 { font-size:clamp(19px,1.8vw,23px); }
     .visual { position:relative; margin:0; overflow:hidden; background:#e9ece9; aspect-ratio:1.45; }
-    .is-lead .visual { aspect-ratio:1.85; }
+    .is-lead .visual { aspect-ratio:1.65; }
     .visual img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 28%; transition:transform .45s ease; }
     .zoom-center img { transform:scale(1.7); transform-origin:50% 16%; }
     a.article-card:hover .visual img { transform:scale(1.025); }
@@ -140,8 +159,8 @@
     .visual-type small { color:var(--muted); font-weight:700; letter-spacing:.08em; }
     .article-body { padding:14px 1px 0; }
     .episode { margin:0; color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.06em; }
-    .article-card h3 { margin:6px 0 0; font-family:var(--mincho); font-weight:700; font-size:clamp(19px,1.8vw,24px); letter-spacing:.01em; line-height:1.5; }
-    .is-lead h3 { font-size:clamp(23px,2.5vw,32px); }
+    .article-card h4 { margin:6px 0 0; font-family:var(--mincho); font-weight:700; font-size:clamp(19px,1.8vw,24px); letter-spacing:.01em; line-height:1.5; }
+    .is-lead h4 { font-size:clamp(26px,2.6vw,35px); }
     .summary { margin:8px 0 0; color:#5d5d5d; font-size:14px; line-height:1.8; }
     .tags { display:flex; flex-wrap:wrap; gap:6px; margin:12px 0 0; padding:0; list-style:none; }
     .tags li { padding:3px 9px; border:1px solid var(--line); font-size:12px; font-weight:700; color:#555; }
@@ -150,7 +169,7 @@
     .empty.is-show { display:block; }
 
     .promise { border-top:1px solid var(--line); padding:34px 0; }
-    .promise p { margin:0; max-width:38em; font-family:var(--mincho); font-size:16px; line-height:2; }
+    .promise p { margin:0; max-width:65em; color:#565f59; font-size:13px; line-height:1.9; }
     footer { padding:25px 0 42px; border-top:1px solid var(--line); color:#777; font-size:12px; }
     .footer-inner { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px 20px; }
     .footer-links { display:flex; gap:18px; }
@@ -161,7 +180,13 @@
     @media (max-width:850px) {
       .mast-grid { grid-template-columns:1fr; }
       .cards { justify-self:center; max-width:400px; aspect-ratio:1.08; }
-      .article-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 18px; }
+      .hero-feature { margin-inline:auto; max-width:400px; }
+      .article-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px 18px; }
+    }
+    @media (max-width:700px) {
+      .article-grid { grid-template-columns:1fr; }
+      .article-card.is-lead { grid-template-columns:1fr; align-items:start; }
+      .article-card.is-lead .article-body { padding-top:14px; }
     }
     @media (max-width:580px) {
       .container { width:calc(100% - 32px); }
@@ -169,17 +194,22 @@
       .header-nav a:first-child { display:none; }
       .brand small { display:none; }
       .title { font-size:clamp(40px,12.4vw,56px); }
+      .mast-grid { gap:20px; }
+      .cards { max-width:290px; aspect-ratio:1.16; }
+      .card-back { padding:6% 7%; }
+      .card-back p { font-size:12px; line-height:1.65; letter-spacing:.02em; }
       .people { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
       .people.is-small { grid-template-columns:repeat(3,minmax(0,1fr)); }
       .person { min-height:126px; padding:9px 4px; }
       .avatar { width:60px; height:60px; font-size:21px; }
       .person b { font-size:13px; }
       .person-search { width:100%; }
-      .article-grid { grid-template-columns:1fr; gap:34px; }
+      .article-grid, .article-grid.published-grid, .upcoming-grid { grid-template-columns:1fr; gap:34px; }
       .article-card.is-lead { grid-column:auto; }
       .visual, .is-lead .visual { aspect-ratio:1.5; }
       .list-head { display:block; }
       .list-head p { margin-top:4px; }
+      .hero-feature { margin-top:0; }
     }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .visual img, .cf-name { transition:none; } }
   </style>
@@ -202,12 +232,13 @@
           <p class="issue"><span><b>第一集</b></span><span>第一営業部 編</span><span>2026 秋</span></p>
           <h1 class="title" id="site-title"><span class="nobr">名刺に</span><br><span class="nobr">書けないこと</span></h1>
           <p class="subtitle">ライトアップで働く人の、ふだんの話。</p>
-          <p class="lead">はじめまして、の前に。担当者がどんな人なのか、先に少しだけ知ってもらうための読み物です。商談がうまくいった日も、立ち止まった日も。いまは本人確認前の編集初稿として、少しずつ書き進めています。</p>
+          <p class="lead">はじめまして、の前に。仕事で向き合ったことも、ふだんの素顔も。名刺の名前だけでは伝わらない、ライトアップの人たちの記録です。</p>
           <div class="mast-cta">
             <a class="btn" href="#finder">名前から探す <span aria-hidden="true">↓</span></a>
             <a class="text-link" href="#stories">記事を読む</a>
           </div>
         </div>
+        <div class="mast-art">
         <div class="cards" aria-hidden="true">
           <div class="card card-back"><p>名刺には、<br>名前と部署しか書けない。<br><em>その先の話を、ここに。</em></p></div>
           <div class="card card-front">
@@ -219,13 +250,15 @@
             <div class="cf-foot">LIGHT UP Inc.</div>
           </div>
         </div>
+        <a class="hero-feature" id="hero-feature" href="./yoshikawa/"><span><small id="hero-feature-kicker">編集初稿 ／ 第1話</small><b id="hero-feature-title">提案をいったん引っ込めて、聞き直した日</b></span><span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </section>
 
     <section class="container finder" id="finder" aria-labelledby="finder-title">
       <div class="finder-head">
         <h2 id="finder-title">人から探す</h2>
-        <div class="dept-tabs" role="group" aria-label="部署で絞り込む">
+        <div class="dept-tabs" role="group" aria-label="部署で絞り込む" hidden>
           <button class="dept-tab" type="button" data-dept="all" aria-pressed="true">すべて</button>
           <button class="dept-tab" type="button" data-dept="sales1" aria-pressed="false">第一営業部</button>
           <button class="dept-tab" type="button" data-dept="sales2" aria-pressed="false" disabled>第二営業部<small>近日</small></button>
@@ -233,7 +266,7 @@
         </div>
       </div>
       <div class="finder-tools">
-        <p id="people-count">第一営業部の6人から探す</p>
+        <p id="people-count">担当者 6人から探す</p>
         <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
       </div>
       <div class="people" id="people"></div>
@@ -252,14 +285,15 @@
     </section>
 
     <section class="container" id="stories" aria-labelledby="stories-title">
-      <div class="list-head"><h2 id="stories-title">記事一覧</h2><p id="list-note">編集初稿と、公開済みの話</p></div>
-      <div class="article-grid" id="grid">
-
+      <div class="list-head"><div><span class="section-kicker">STORIES</span><h2 id="stories-title">日々の記録</h2></div><p id="list-note">編集初稿4話・公開済み2話・取材予定2件</p></div>
+      <div class="story-group" id="draft-group">
+        <div class="group-head"><div><span class="section-kicker">01 ／ FIRST SALES DIVISION</span><h3>仕事の中で、聞き直したこと</h3></div><p>第一営業部・編集初稿</p></div>
+        <div class="article-grid" id="grid">
         <a class="article-card is-lead" href="./yoshikawa/" data-who="yoshikawa" data-dept="sales1">
           <figure class="visual"><img src="./assets/yoshikawa.webp" width="500" height="760" alt="吉川弘毅さんの人物ビジュアル" loading="eager" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第1話　吉川 弘毅</p>
-            <h3>提案をいったん引っ込めて、聞き直した日</h3>
+            <h4>提案をいったん<br>引っ込めて、<br>聞き直した日</h4>
             <p class="summary">見積の漏れに答えを出せたと思った。白石への相談で気づいたのは、まだ聞けていないこと。提案をいったん引っ込め、もう一度お客様の話を聞いた日の記録。</p>
             <ul class="tags"><li class="dept">第一営業部</li><li>吉川 弘毅</li></ul>
           </div>
@@ -269,7 +303,7 @@
           <figure class="visual"><div class="visual-type" role="img" aria-label="菅野敬彦の文字ビジュアル"><b>菅野 敬彦</b><small>本人写真は選定中</small></div><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第2話　菅野 敬彦</p>
-            <h3>選んでもらう前に、決め方を一緒に考えた</h3>
+            <h4>選んでもらう前に、決め方を一緒に考えた</h4>
             <p class="summary">大きな開発を一度に決める前に、まず要件と試作品を作る。お客様が選べる順番を考えた話。</p>
             <ul class="tags"><li class="dept">第一営業部</li><li>菅野 敬彦</li></ul>
           </div>
@@ -279,7 +313,7 @@
           <figure class="visual"><img src="./assets/murata.webp" width="560" height="780" alt="村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
           <div class="article-body">
             <p class="episode">第3話　村田 峻平</p>
-            <h3>売上の話をやめた日</h3>
+            <h4>売上の話をやめた日</h4>
             <p class="summary">売上より先に、社内の仕事を変えたい。聞き直した希望に合わせて、支援の形を組み直した。</p>
             <ul class="tags"><li class="dept">第一営業部</li><li>村田 峻平</li></ul>
           </div>
@@ -287,24 +321,18 @@
 
         <a class="article-card" href="./enomoto/" data-who="enomoto" data-dept="sales1">
           <figure class="visual"><img src="./assets/portrait-04.jpg" width="939" height="1600" alt="榎本翔太さんのポートレート" loading="lazy" decoding="async"><figcaption class="visual-tag is-soon">編集初稿・確認待ち</figcaption></figure>
-          <div class="article-body"><p class="episode">第4話　榎本 翔太</p><h3>「便利そう」の先にあるもの</h3><p class="summary">機能を説明しても、導入後の姿が届かない。「分身」というお客様の一言から、榎本の聞き方が変わった。</p><ul class="tags"><li class="dept">第一営業部</li><li>榎本 翔太</li></ul></div>
+          <div class="article-body"><p class="episode">第4話　榎本 翔太</p><h4>「便利そう」の先にあるもの</h4><p class="summary">機能を説明しても、導入後の姿が届かない。「分身」というお客様の一言から、榎本の聞き方が変わった。</p><ul class="tags"><li class="dept">第一営業部</li><li>榎本 翔太</li></ul></div>
         </a>
-
-        <article class="article-card is-pending" data-who="urashima" data-dept="sales1" aria-label="浦嶋剛志の記事候補・取材準備中">
-          <figure class="visual"><div class="visual-type" role="img" aria-label="浦嶋剛志の文字ビジュアル"><b>浦嶋 剛志</b><small>本人写真は選定中</small></div><figcaption class="visual-tag is-soon">取材準備中</figcaption></figure>
-          <div class="article-body"><p class="episode">記事候補　浦嶋 剛志</p><h3>現場の声と、白石の言葉のあいだで</h3><p class="summary">第一営業部のマネージャーとして、部下の挑戦をどう支え、上司の期待をどう現場の言葉に翻訳するのか。葛藤の有無も含めて本人に聞きたい話。（推測）</p><ul class="tags"><li class="dept">第一営業部</li><li>浦嶋 剛志</li></ul></div>
-        </article>
-
-        <article class="article-card is-pending" data-who="tsuchiya" data-dept="sales1" aria-label="土屋慧介の記事候補・取材準備中">
-          <figure class="visual"><img src="./assets/portrait-05.jpg" width="741" height="1000" alt="土屋慧介さんのポートレート" loading="lazy" decoding="async"><figcaption class="visual-tag is-soon">取材準備中</figcaption></figure>
-          <div class="article-body"><p class="episode">記事候補　土屋 慧介</p><h3>急がせない提案も、営業の仕事だろうか</h3><p class="summary">飛び込み営業からAIの提案へ。うまく進まなかった商談で、土屋は何を聞き直すのか。休日のキャンプやバイクの話も一緒に。（推測）</p><ul class="tags"><li class="dept">第一営業部</li><li>土屋 慧介</li></ul></div>
-        </article>
-
+        </div>
+      </div>
+      <div class="story-group" id="published-group">
+        <div class="group-head"><div><span class="section-kicker">02 ／ ARCHIVE</span><h3>これまでに語られたこと</h3></div><p>公開済みの記録</p></div>
+        <div class="article-grid published-grid">
         <a class="article-card" href="https://writeup-inc.github.io/interviews/murata-referrals/" data-who="murata" data-dept="sales1">
           <figure class="visual"><img src="./assets/murata-shumpei.jpg" width="512" height="512" alt="村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag">公開中</figcaption></figure>
           <div class="article-body">
             <p class="episode">番外編　村田 峻平</p>
-            <h3>紹介の連鎖は、どう生まれたのか。</h3>
+            <h4>紹介の連鎖は、どう生まれたのか。</h4>
             <p class="summary">1人のお客様から3件の紹介、2件の契約へ。相談から伴走、紹介へとつながった経緯を振り返ります。</p>
             <ul class="tags"><li class="dept">第一営業部</li><li>村田 峻平</li></ul>
           </div>
@@ -314,18 +342,31 @@
           <figure class="visual"><img src="./assets/roundtable-tsuchiya-yoshikawa-murata.webp" width="1536" height="1024" alt="座談会で話す土屋慧介さん、吉川弘毅さん、村田峻平さん" loading="lazy" decoding="async"><figcaption class="visual-tag">公開中・座談会</figcaption></figure>
           <div class="article-body">
             <p class="episode">座談会　土屋・吉川・村田</p>
-            <h3>3人の営業が語る、AIが「相棒」になるまで。</h3>
+            <h4>3人の営業が語る、AIが「相棒」になるまで。</h4>
             <p class="summary">AI SaaS営業の約2年間を振り返り、提案づくりがどう変わったかを3人で話しました。</p>
             <ul class="tags"><li class="dept">第一営業部</li><li>土屋 慧介</li><li>吉川 弘毅</li><li>村田 峻平</li></ul>
           </div>
         </a>
+        </div>
+      </div>
+      <div class="story-group" id="upcoming-group">
+        <div class="group-head"><div><span class="section-kicker">03 ／ NEXT VOICES</span><h3>これから聞きたいこと</h3></div><p>取材準備中</p></div>
+        <div class="upcoming-grid">
+        <article class="article-card is-pending" data-who="urashima" data-dept="sales1" aria-label="浦嶋剛志の記事候補・取材準備中">
+          <div class="article-body"><p class="episode">記事候補　浦嶋 剛志</p><h4>現場の声と、白石の言葉のあいだで</h4><p class="summary">第一営業部のマネージャーとして、部下の挑戦をどう支え、上司の期待をどう現場の言葉に翻訳するのか。葛藤の有無も含めて本人に聞きたい話。（推測）</p></div>
+        </article>
 
+        <article class="article-card is-pending" data-who="tsuchiya" data-dept="sales1" aria-label="土屋慧介の記事候補・取材準備中">
+          <div class="article-body"><p class="episode">記事候補　土屋 慧介</p><h4>急がせない提案も、営業の仕事だろうか</h4><p class="summary">飛び込み営業からAIの提案へ。うまく進まなかった商談で、土屋は何を聞き直すのか。休日のキャンプやバイクの話も一緒に。（推測）</p></div>
+        </article>
+        </div>
       </div>
       <p class="empty" id="empty">この部署の記事は、ただいま準備中です。</p>
     </section>
 
-    <section class="container promise" aria-label="この読み物について">
-      <p>これは編集途中の見本です。新しい4話は社内の記録をもとに書いた初稿で、本人・顧客の確認前。確認できた言葉と、取材で確かめたい「（推測）」を分けて残しています。</p>
+    <section class="container promise" aria-label="編集について">
+      <span class="section-kicker">EDITOR'S NOTE</span>
+      <p>このサイトは公開前の確認用見本です。新しい4話は社内の記録をもとにした編集初稿で、本人・顧客の確認前です。事実の確認が必要な描写には「（推測）」を付けています。</p>
     </section>
   </main>
 
@@ -340,7 +381,9 @@
       { id:'urashima',  name:'浦嶋 剛志', role:'第一営業部 マネージャー', dept:'sales1', img:'' },
       { id:'tsuchiya',  name:'土屋 慧介', role:'第一営業部 リーダー', dept:'sales1', img:'./assets/portrait-05.jpg' }
     ];
-    const cards = [...document.querySelectorAll('#grid .article-card')];
+    const cards = [...document.querySelectorAll('#stories .article-card')];
+    const storyGroups = [...document.querySelectorAll('.story-group')];
+    const overview = `編集初稿${document.querySelectorAll('#draft-group .article-card').length}話・公開済み${document.querySelectorAll('#published-group .article-card').length}話・取材予定${document.querySelectorAll('#upcoming-group .article-card').length}件`;
     const peopleEl = document.getElementById('people');
     const profile = document.getElementById('profile');
     const empty = document.getElementById('empty');
@@ -361,6 +404,8 @@
       peopleEl.appendChild(b);
     });
 
+    const activeDepts = new Set(PEOPLE.map(p => p.dept));
+    document.querySelector('.dept-tabs').hidden = activeDepts.size < 2;
     document.querySelectorAll('.dept-tab[data-dept]').forEach(t => {
       if (t.disabled && PEOPLE.some(p => p.dept === t.dataset.dept)) {
         t.disabled = false;
@@ -419,11 +464,12 @@
         const ok = (!state.who || c.dataset.who.split(' ').includes(state.who)) && (state.dept === 'all' || c.dataset.dept === state.dept);
         c.hidden = !ok; if (ok) shown++;
       });
+      storyGroups.forEach(group => { group.hidden = !group.querySelector('.article-card:not([hidden])'); });
       empty.classList.toggle('is-show', shown === 0);
       empty.textContent = state.who ? 'この人の記事は、ただいま準備中です。' : 'この部署の記事は、ただいま準備中です。';
       const p = PEOPLE.find(x => x.id === state.who);
       profile.classList.toggle('is-open', !!p);
-      document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : '編集初稿と、公開済みの話';
+      document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : overview;
       if (p) {
         document.getElementById('profile-name').textContent = p.name;
         document.getElementById('profile-role').textContent = `株式会社ライトアップ ${p.role}`;
@@ -434,13 +480,25 @@
     }
 
     const cfName = document.getElementById('cf-name'), cfDept = document.getElementById('cf-dept');
-    function showCard(p) { cfName.textContent = p.name; cfDept.textContent = p.role; }
+    const heroFeature = document.getElementById('hero-feature');
+    const heroFeatureKicker = document.getElementById('hero-feature-kicker');
+    const heroFeatureTitle = document.getElementById('hero-feature-title');
+    function showCard(p) {
+      cfName.textContent = p.name;
+      cfDept.textContent = p.role;
+      const related = cards.find(c => c.tagName === 'A' && c.dataset.who.split(' ').includes(p.id));
+      heroFeature.href = related ? related.getAttribute('href') : `?who=${p.id}#stories`;
+      heroFeatureKicker.textContent = related ? related.querySelector('.episode').textContent : '取材準備中';
+      heroFeatureTitle.textContent = related ? related.querySelector('h4').textContent : `${p.name}さんに、これから聞きたいこと`;
+      heroFeature.classList.remove('is-changing');
+    }
     let i = 0;
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setInterval(() => {
-        if (state.who) return;
+        if (state.who || heroFeature.matches(':hover, :focus')) return;
         i = (i + 1) % PEOPLE.length;
         cfName.style.opacity = 0;
+        heroFeature.classList.add('is-changing');
         setTimeout(() => { showCard(PEOPLE[i]); cfName.style.opacity = 1; }, 450);
       }, 3200);
     }
