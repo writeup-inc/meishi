@@ -11,3 +11,6 @@
 .article-body blockquote.voice{position:relative;margin:34px 0;padding:22px 25px 20px;border:0;background:#eff5f0;font-family:inherit;font-size:clamp(16px,2vw,19px);line-height:1.9}
 .article-body blockquote.voice::before{content:"本人の言葉";display:block;margin-bottom:9px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.14em}
 .article-body blockquote.voice cite{display:block;margin-top:12px;color:#65746a;font-size:11px;font-style:normal;font-weight:700;text-align:right}
+
+/* 媒体の正式名と発行元を二段で示す */
+.brand-copy{display:flex;flex-direction:column;gap:1px;line-height:1.15}.brand-name{font-family:var(--serif);font-size:16px;font-weight:700;letter-spacing:.035em;white-space:nowrap}.brand-copy small{display:block;color:var(--muted);font-size:9px;font-weight:700;letter-spacing:.14em;white-space:nowrap}@media(max-width:580px){.brand-name{font-size:13px}.brand-copy small{font-size:8px;letter-spacing:.08em}}
