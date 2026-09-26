@@ -88,7 +88,7 @@
     .hero-feature:hover b { text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
 
     /* ── 人から探す ── */
-    .finder { border-top:1px solid var(--ink); padding:28px 0 42px; }
+    .finder { border-top:1px solid var(--ink); padding:28px 0 34px; }
     .finder-head { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px 24px; margin-bottom:18px; }
     .finder-head h2 { margin:0; font-family:var(--mincho); font-size:clamp(24px,2.3vw,31px); line-height:1.35; letter-spacing:.02em; }
     .dept-tabs { display:flex; flex-wrap:wrap; gap:8px; }
@@ -99,21 +99,25 @@
     .dept-tab:disabled small { font-size:12px; margin-left:4px; }
     .finder-tools { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 20px; margin:0 0 14px; }
     .finder-tools p { margin:0; color:var(--muted); font-size:13px; }
-    .person-search { width:min(100%,280px); min-height:42px; padding:0 13px; border:1px solid var(--line); border-radius:0; background:#fff; color:var(--ink); font:inherit; font-size:14px; }
-    .person-search:focus-visible, .person:focus-visible, .roster-toggle:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-    .people { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
-    .people.is-small { max-width:780px; grid-template-columns:repeat(3,minmax(0,1fr)); }
-    .person { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; min-width:0; min-height:144px; padding:13px 7px 11px; border:1px solid var(--line); background:#fff; text-align:center; cursor:pointer; transition:border-color .2s; }
-    .person[hidden] { display:none; }
-    .person:hover { border-color:#9a9a9a; }
-    .person[aria-pressed="true"] { border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent); }
-    .avatar { flex:none; width:68px; height:68px; border-radius:50%; overflow:hidden; background:#e9ece9; display:grid; place-items:center; font-family:var(--mincho); font-size:24px; font-weight:700; color:var(--accent); }
+    .finder-actions { display:flex; align-items:center; gap:8px; }
+    .person-search { width:min(42vw,250px); min-height:42px; padding:0 13px; border:1px solid var(--line); border-radius:0; background:#fff; color:var(--ink); font:inherit; font-size:14px; }
+    .person-search:focus-visible, .person:focus-visible, .people-nav button:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    .people-nav { display:flex; gap:4px; }
+    .people-nav button { width:42px; height:42px; border:1px solid var(--line); background:#fff; font-size:22px; line-height:1; cursor:pointer; }
+    .people-nav button:hover:not(:disabled) { border-color:var(--ink); }
+    .people-nav button:disabled { color:#c7cbc7; cursor:default; }
+    .people { display:flex; gap:9px; overflow-x:auto; overflow-y:hidden; padding:6px 2px 15px; scroll-snap-type:x proximity; scrollbar-width:thin; scrollbar-color:#c9cec9 transparent; }
+    .person, .person-placeholder { flex:0 0 91px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:8px; min-height:106px; padding:7px 3px; text-align:center; scroll-snap-align:start; }
+    .person { border:0; background:transparent; cursor:pointer; }
+    .person[hidden], .person-placeholder[hidden] { display:none; }
+    .person:hover .avatar, .person[aria-pressed="true"] .avatar { box-shadow:0 0 0 2px var(--accent),0 0 0 5px #fff; }
+    .avatar { position:relative; flex:none; width:58px; height:58px; border-radius:50%; overflow:hidden; background:#e9ece9; display:grid; place-items:center; font-family:var(--mincho); font-size:21px; font-weight:700; color:var(--accent); transition:box-shadow .2s ease; }
     .avatar img { width:100%; height:100%; object-fit:cover; object-position:50% 22%; }
-    .person b { display:block; font-size:15px; letter-spacing:.04em; line-height:1.3; }
-    .person small { display:block; color:var(--muted); font-size:11px; font-weight:700; line-height:1.4; }
-    .roster-toggle { display:none; width:100%; min-height:44px; margin-top:10px; border:1px solid var(--line); background:#fff; color:var(--ink); font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
-    .roster-toggle.is-show { display:block; }
-    .roster-toggle:hover { border-color:var(--ink); }
+    .person b { display:block; white-space:nowrap; font-size:12px; font-weight:800; letter-spacing:.01em; line-height:1.35; }
+    .person-placeholder { color:#9da49e; font-size:9px; font-weight:800; letter-spacing:.04em; white-space:nowrap; }
+    .avatar-blank { background:#f2f3f0; }
+    .avatar-blank::before { content:""; position:absolute; top:14px; left:21px; width:16px; height:16px; border-radius:50%; background:#d4d9d3; }
+    .avatar-blank::after { content:""; position:absolute; bottom:10px; left:13px; width:32px; height:17px; border-radius:20px 20px 9px 9px; background:#d4d9d3; }
     .people-empty { display:none; padding:18px 0; color:var(--muted); font-size:14px; }
     .people-empty.is-show { display:block; }
 
@@ -176,7 +180,6 @@
     .footer-links a { display:inline-flex; align-items:center; min-height:44px; text-decoration:none; }
     .footer-links a:hover { color:var(--ink); }
 
-    @media (max-width:980px) { .people { grid-template-columns:repeat(4,minmax(0,1fr)); } }
     @media (max-width:850px) {
       .article-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px 18px; }
     }
@@ -200,12 +203,12 @@
       .cf-top { font-size:10px; }
       .cf-name { font-size:21px; }
       .cf-foot, .cf-dept { font-size:10px; }
-      .people { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
-      .people.is-small { grid-template-columns:repeat(3,minmax(0,1fr)); }
-      .person { min-height:126px; padding:9px 4px; }
-      .avatar { width:60px; height:60px; font-size:21px; }
-      .person b { font-size:13px; }
-      .person-search { width:100%; }
+      .finder-actions { width:100%; }
+      .person-search { flex:1; width:auto; min-width:0; }
+      .person, .person-placeholder { flex-basis:83px; }
+      .avatar { width:54px; height:54px; }
+      .avatar-blank::before { left:19px; }
+      .avatar-blank::after { left:11px; }
       .article-grid, .article-grid.published-grid, .upcoming-grid { grid-template-columns:1fr; gap:34px; }
       .article-card.is-lead { grid-column:auto; }
       .visual, .is-lead .visual { aspect-ratio:1.5; }
@@ -268,12 +271,17 @@
         </div>
       </div>
       <div class="finder-tools">
-        <p id="people-count">担当者 6人から探す</p>
-        <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
+        <p id="people-count">6人を掲載中・14枠は準備中</p>
+        <div class="finder-actions">
+          <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
+          <div class="people-nav" role="group" aria-label="担当者一覧を横に送る">
+            <button id="people-prev" type="button" aria-label="前の担当者を見る" aria-controls="people" disabled>←</button>
+            <button id="people-next" type="button" aria-label="次の担当者を見る" aria-controls="people">→</button>
+          </div>
+        </div>
       </div>
-      <div class="people" id="people"></div>
+      <div class="people" id="people" role="group" aria-label="担当者一覧・20枠"></div>
       <p class="people-empty" id="people-empty" role="status">該当する担当者が見つかりません。</p>
-      <button class="roster-toggle" id="roster-toggle" type="button" aria-expanded="false" aria-controls="people"></button>
       <div class="profile" id="profile" aria-live="polite">
         <div class="profile-text">
           <p><strong id="profile-name"></strong>　<span id="profile-role"></span></p>
@@ -390,20 +398,30 @@
     const profile = document.getElementById('profile');
     const empty = document.getElementById('empty');
     const personSearch = document.getElementById('person-search');
-    const rosterToggle = document.getElementById('roster-toggle');
+    const peoplePrev = document.getElementById('people-prev');
+    const peopleNext = document.getElementById('people-next');
+    const TOTAL_SLOTS = 20;
     const DEPT_LABELS = { all:'担当者', sales1:'第一営業部', sales2:'第二営業部', planning:'企画開発部門' };
-    const previewCount = () => matchMedia('(max-width:580px)').matches ? 6 : matchMedia('(max-width:980px)').matches ? 8 : 10;
-    let state = { who:null, dept:'all', rosterExpanded:false };
+    let state = { who:null, dept:'all' };
     const personButtons = new Map();
 
     PEOPLE.forEach(p => {
       const n = cards.filter(c => c.dataset.who.split(' ').includes(p.id)).length;
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'person'; b.dataset.who = p.id; b.setAttribute('aria-pressed','false');
-      b.innerHTML = `<span class="avatar">${p.img ? `<img src="${p.img}" alt="" width="68" height="68" loading="lazy">` : p.name.charAt(0)}</span><span><b>${p.name}</b><small>記事・候補 ${n}件</small></span>`;
+      b.setAttribute('aria-label', `${p.name}の記事・候補を表示（${n}件）`);
+      b.innerHTML = `<span class="avatar" aria-hidden="true">${p.img ? `<img src="${p.img}" alt="" width="58" height="58" loading="lazy">` : p.name.charAt(0)}</span><b>${p.name}</b>`;
       b.addEventListener('click', () => setWho(state.who === p.id ? null : p.id, true));
       personButtons.set(p.id, b);
       peopleEl.appendChild(b);
+    });
+    const pendingSlots = Array.from({length:Math.max(0,TOTAL_SLOTS - PEOPLE.length)}, () => {
+      const slot = document.createElement('div');
+      slot.className = 'person-placeholder';
+      slot.setAttribute('aria-hidden','true');
+      slot.innerHTML = '<span class="avatar avatar-blank"></span><span>COMING SOON</span>';
+      peopleEl.appendChild(slot);
+      return slot;
     });
 
     const activeDepts = new Set(PEOPLE.map(p => p.dept));
@@ -416,15 +434,20 @@
     });
     document.querySelectorAll('.dept-tab:not([disabled])').forEach(t => t.addEventListener('click', () => {
       state.dept = t.dataset.dept;
-      state.rosterExpanded = false;
       const selected = PEOPLE.find(p => p.id === state.who);
       if (selected && state.dept !== 'all' && selected.dept !== state.dept) setWho(null, false);
       else render();
     }));
     personSearch.addEventListener('input', render);
-    rosterToggle.addEventListener('click', () => { state.rosterExpanded = !state.rosterExpanded; render(); });
-    matchMedia('(max-width:580px)').addEventListener('change', render);
-    matchMedia('(max-width:980px)').addEventListener('change', render);
+    function updatePeopleNav() {
+      peoplePrev.disabled = peopleEl.scrollLeft < 2;
+      peopleNext.disabled = peopleEl.scrollLeft + peopleEl.clientWidth >= peopleEl.scrollWidth - 2;
+    }
+    peopleEl.addEventListener('scroll', updatePeopleNav, {passive:true});
+    window.addEventListener('resize', updatePeopleNav);
+    [peoplePrev, peopleNext].forEach((button, direction) => button.addEventListener('click', () => {
+      peopleEl.scrollBy({left:(direction ? 1 : -1) * Math.max(peopleEl.clientWidth * .75, 240),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+    }));
     document.getElementById('clear').addEventListener('click', () => setWho(null, true));
     document.getElementById('copy-url').addEventListener('click', async e => {
       const btn = e.currentTarget, label = btn.textContent;
@@ -439,6 +462,12 @@
       id ? url.searchParams.set('who', id) : url.searchParams.delete('who');
       history.replaceState(null, '', url);
       render();
+      if (id && !scroll) requestAnimationFrame(() => {
+        const button = personButtons.get(id), strip = peopleEl.getBoundingClientRect(), face = button?.getBoundingClientRect();
+        if (face && (face.left < strip.left || face.right > strip.right)) {
+          peopleEl.scrollLeft += face.left - strip.left - (strip.width - face.width) / 2;
+        }
+      });
       if (scroll && id) document.getElementById('finder').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     }
 
@@ -446,21 +475,16 @@
       document.querySelectorAll('.dept-tab[data-dept]').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.dept === state.dept)));
       const query = personSearch.value.replace(/\s+/g, '').toLocaleLowerCase('ja');
       const matching = PEOPLE.filter(p => (state.dept === 'all' || p.dept === state.dept) && p.name.replace(/\s+/g, '').toLocaleLowerCase('ja').includes(query));
-      const ordered = [...matching].sort((a, b) => Number(b.id === state.who) - Number(a.id === state.who));
-      peopleEl.classList.toggle('is-small', matching.length <= 6);
-      ordered.forEach(p => peopleEl.appendChild(personButtons.get(p.id)));
-      const limit = previewCount();
-      const visibleCount = query || state.rosterExpanded ? ordered.length : Math.min(limit, ordered.length);
-      const visibleIds = new Set(ordered.slice(0, visibleCount).map(p => p.id));
+      const visibleIds = new Set(matching.map(p => p.id));
       personButtons.forEach((b, id) => {
         b.hidden = !visibleIds.has(id);
         b.setAttribute('aria-pressed', String(id === state.who));
       });
-      document.getElementById('people-count').textContent = `${DEPT_LABELS[state.dept]} ${matching.length}人から探す`;
+      pendingSlots.forEach(slot => { slot.hidden = !!query || state.dept !== 'all'; });
+      document.getElementById('people-count').textContent = query ? `${matching.length}人が見つかりました` : state.dept === 'all' ? `${PEOPLE.length}人を掲載中${pendingSlots.length ? `・${pendingSlots.length}枠は準備中` : ''}` : `${DEPT_LABELS[state.dept]} ${matching.length}人を掲載中`;
       document.getElementById('people-empty').classList.toggle('is-show', matching.length === 0);
-      rosterToggle.classList.toggle('is-show', !query && ordered.length > limit);
-      rosterToggle.setAttribute('aria-expanded', String(state.rosterExpanded));
-      rosterToggle.textContent = state.rosterExpanded ? '一覧を閉じる' : `全員を見る（あと${Math.max(0, ordered.length - limit)}人）`;
+      if (query) peopleEl.scrollLeft = 0;
+      requestAnimationFrame(updatePeopleNav);
       let shown = 0;
       cards.forEach(c => {
         const ok = (!state.who || c.dataset.who.split(' ').includes(state.who)) && (state.dept === 'all' || c.dataset.dept === state.dept);
