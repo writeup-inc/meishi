@@ -68,24 +68,32 @@
     .btn:hover { background:var(--accent); border-color:var(--accent); }
     .text-link { font-size:13px; font-weight:700; color:var(--muted); text-decoration:none; border-bottom:1px solid #ccc; }
 
-    /* 名刺と、その裏 */
-    .cards { position:relative; aspect-ratio:1.4; max-width:440px; width:100%; justify-self:end; }
-    .card { position:absolute; width:78%; aspect-ratio:91/55; background:#fff; border:1px solid #dcdcdc; box-shadow:0 18px 40px -22px rgba(0,0,0,.35); }
-    .card-back { left:0; top:4%; transform:rotate(-5deg); background:var(--tint); padding:7% 6%; }
-    .card-back p { margin:0; font-family:var(--mincho); font-size:clamp(13px,1.55vw,19px); line-height:1.55; letter-spacing:.04em; color:#3b3b3b; }
-    .card-back p em { font-style:normal; color:var(--accent); }
-    .card-front { width:68%; right:0; bottom:0; transform:rotate(3deg); padding:6% 7%; display:flex; flex-direction:column; justify-content:space-between; }
-    .cf-top { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:800; letter-spacing:.05em; }
-    .cf-top .brand-mark { width:22px; height:22px; font-size:12px; }
-    .cf-dept { margin:0; color:var(--muted); font-size:12px; font-weight:700; }
-    .cf-name { margin:2px 0 0; font-size:clamp(22px,2.6vw,30px); font-weight:800; letter-spacing:.12em; transition:opacity .45s ease; }
-    .cf-foot { font-size:12px; color:#9a9a9a; letter-spacing:.04em; }
-    .hero-feature { display:flex; justify-content:space-between; gap:18px; align-items:end; margin:6px 0 0 auto; padding:10px 2px 0; max-width:440px; border-top:1px solid var(--ink); color:inherit; text-decoration:none; transition:opacity .35s ease; }
-    .hero-feature.is-changing { opacity:0; }
-    .hero-feature small { display:block; color:var(--accent); font-size:11px; font-weight:800; letter-spacing:.12em; }
-    .hero-feature b { display:block; margin-top:5px; font-family:var(--mincho); font-size:17px; line-height:1.5; }
-    .hero-feature span:last-child { color:var(--accent); font-size:21px; }
-    .hero-feature:hover b { text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
+    /* 新着の5枚が順に落ちて重なる。狭い画面では横にめくれる。 */
+    .mast-art { min-width:0; }
+    .cards { position:relative; width:100%; max-width:445px; height:356px; margin-left:auto; isolation:isolate; }
+    .fall-slot { position:absolute; left:var(--x); top:var(--y); z-index:var(--stack); width:92%; height:154px; opacity:0; animation:card-fall 1.6s cubic-bezier(.19,.72,.24,1) both; animation-delay:calc(.2s + var(--order)*.72s); }
+    .fall-slot:nth-child(1) { --x:3%; --y:196px; --tilt:2deg; --stack:5; --order:4; --mobile-order:0; }
+    .fall-slot:nth-child(2) { --x:7%; --y:147px; --tilt:-1.5deg; --stack:4; --order:3; --mobile-order:1; }
+    .fall-slot:nth-child(3) { --x:1%; --y:98px; --tilt:1.5deg; --stack:3; --order:2; --mobile-order:2; }
+    .fall-slot:nth-child(4) { --x:5%; --y:49px; --tilt:-2deg; --stack:2; --order:1; --mobile-order:3; }
+    .fall-slot:nth-child(5) { --x:2%; --y:0px; --tilt:1deg; --stack:1; --order:0; --mobile-order:4; }
+    .fall-slot:hover, .fall-slot:focus-within { z-index:10; }
+    .news-card { position:relative; display:flex; flex-direction:column; width:100%; height:100%; padding:12px 16px 11px; border:1px solid #d7ded8; border-left:3px solid var(--accent); background:#fff; box-shadow:0 14px 35px -21px rgba(24,48,35,.45); color:var(--ink); text-decoration:none; transform:rotate(var(--tilt)); transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease; }
+    .news-card:hover, .news-card:focus-visible { transform:translateY(-8px) rotate(0deg) scale(1.015); border-color:var(--accent); box-shadow:0 23px 45px -22px rgba(24,48,35,.52); }
+    .news-card:focus-visible { outline-offset:2px; }
+    .fall-slot:first-child .news-card { background:#f9fbf9; border-color:#8cae9a; }
+    .fall-slot.is-selected .news-card { box-shadow:0 0 0 2px var(--accent),0 18px 40px -22px rgba(24,48,35,.45); }
+    .news-top { display:flex; justify-content:space-between; gap:10px; align-items:baseline; color:var(--accent); font-size:10px; font-weight:800; letter-spacing:.07em; line-height:1.25; }
+    .news-top time { font-size:12px; letter-spacing:.02em; }
+    .news-type { color:#858e86; font-size:10px; white-space:nowrap; }
+    .news-title { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden; margin-top:3px; font-family:var(--mincho); font-size:15px; font-weight:700; line-height:1.35; letter-spacing:.015em; }
+    .news-rule { display:block; height:1px; margin:8px 0 6px; background:#e4e9e4; }
+    .news-company { color:#66736b; font-size:10px; font-weight:700; line-height:1.35; }
+    .news-identity { display:flex; flex-wrap:wrap; align-items:baseline; gap:3px 11px; margin-top:auto; padding-right:24px; line-height:1.3; }
+    .news-identity span { color:#66736b; font-size:11px; font-weight:700; }
+    .news-identity b { font-size:16px; font-weight:800; letter-spacing:.07em; }
+    .news-mark { position:absolute; right:15px; bottom:11px; display:grid; width:22px; height:22px; place-items:center; background:var(--accent); color:#fff; font-size:12px; font-weight:900; }
+    @keyframes card-fall { 0% { opacity:0; transform:translate3d(9px,-125px,0) rotate(-7deg); } 62% { opacity:1; } 83% { transform:translate3d(0,6px,0) rotate(1deg); } 100% { opacity:1; transform:translate3d(0,0,0) rotate(0); } }
 
     /* ── 人から探す ── */
     .finder { border-top:1px solid var(--ink); padding:28px 0 34px; }
@@ -184,9 +192,10 @@
       .article-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px 18px; }
     }
     @media (max-width:700px) {
-      .mast-grid { grid-template-columns:1fr; gap:12px; }
-      .cards { justify-self:center; max-width:340px; aspect-ratio:1.45; }
-      .hero-feature { margin-inline:auto; max-width:340px; }
+      .mast-grid { grid-template-columns:1fr; gap:18px; }
+      .cards { display:flex; gap:12px; max-width:none; height:188px; margin:0; padding:6px 10px 16px 4px; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scrollbar-width:thin; }
+      .fall-slot { position:relative; top:auto; left:auto; flex:0 0 min(78vw,315px); width:auto; height:156px; scroll-snap-align:start; animation-delay:calc(.12s + var(--mobile-order)*.45s); }
+      .news-card { transform:none; }
       .article-grid { grid-template-columns:1fr; }
       .article-card.is-lead { grid-template-columns:1fr; align-items:start; }
       .article-card.is-lead .article-body { padding-top:14px; }
@@ -197,12 +206,7 @@
       .header-nav a:first-child { display:none; }
       .brand small { display:none; }
       .title { font-size:clamp(38px,11vw,50px); }
-      .cards { max-width:240px; aspect-ratio:1.45; }
-      .card-back { padding:6% 7%; }
-      .card-back p { font-size:11px; line-height:1.55; letter-spacing:.02em; }
-      .cf-top { font-size:10px; }
-      .cf-name { font-size:21px; }
-      .cf-foot, .cf-dept { font-size:10px; }
+      .fall-slot { flex-basis:min(82vw,305px); }
       .finder-actions { width:100%; }
       .person-search { flex:1; width:auto; min-width:0; }
       .person, .person-placeholder { flex-basis:83px; }
@@ -214,9 +218,8 @@
       .visual, .is-lead .visual { aspect-ratio:1.5; }
       .list-head { display:block; }
       .list-head p { margin-top:4px; }
-      .hero-feature { max-width:100%; margin-top:2px; }
     }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .visual img, .cf-name { transition:none; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .visual img, .news-card { transition:none; } .fall-slot { opacity:1; animation:none; } }
   </style>
 </head>
 <body>
@@ -244,18 +247,33 @@
           </div>
         </div>
         <div class="mast-art">
-        <div class="cards" aria-hidden="true">
-          <div class="card card-back"><p>名刺の先に、<br><em>人がいる。</em></p></div>
-          <div class="card card-front">
-            <div class="cf-top"><span>株式会社ライトアップ</span><span class="brand-mark">W</span></div>
-            <div>
-              <p class="cf-dept" id="cf-dept">第一営業部</p>
-              <p class="cf-name" id="cf-name">吉川 弘毅</p>
-            </div>
-            <div class="cf-foot">LIGHT UP Inc.</div>
-          </div>
+        <div class="cards" aria-label="新着記事の名刺。各名刺から記事を開けます">
+          <div class="fall-slot" data-who="yoshikawa"><a class="news-card" href="./yoshikawa/">
+            <span class="news-top"><span><time datetime="2026-09-26">9月26日</time> 更新</span><span class="news-type">第1話</span></span>
+            <strong class="news-title">提案をいったん引っ込めて、聞き直した日</strong><span class="news-rule" aria-hidden="true"></span>
+            <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>第一営業部</span><b>吉川 弘毅</b></span><span class="news-mark" aria-hidden="true">W</span>
+          </a></div>
+          <div class="fall-slot" data-who="kanno"><a class="news-card" href="./kanno/">
+            <span class="news-top"><span><time datetime="2026-09-26">9月26日</time> 更新</span><span class="news-type">第2話</span></span>
+            <strong class="news-title">選んでもらう前に、決め方を一緒に考えた</strong><span class="news-rule" aria-hidden="true"></span>
+            <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>第一営業部</span><b>菅野 敬彦</b></span><span class="news-mark" aria-hidden="true">W</span>
+          </a></div>
+          <div class="fall-slot" data-who="murata"><a class="news-card" href="./murata/">
+            <span class="news-top"><span><time datetime="2026-09-26">9月26日</time> 更新</span><span class="news-type">第3話</span></span>
+            <strong class="news-title">売上の話をやめた日</strong><span class="news-rule" aria-hidden="true"></span>
+            <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>第一営業部</span><b>村田 峻平</b></span><span class="news-mark" aria-hidden="true">W</span>
+          </a></div>
+          <div class="fall-slot" data-who="enomoto"><a class="news-card" href="./enomoto/">
+            <span class="news-top"><span><time datetime="2026-09-26">9月26日</time> 更新</span><span class="news-type">第4話</span></span>
+            <strong class="news-title">「便利そう」の先にあるもの</strong><span class="news-rule" aria-hidden="true"></span>
+            <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>第一営業部</span><b>榎本 翔太</b></span><span class="news-mark" aria-hidden="true">W</span>
+          </a></div>
+          <div class="fall-slot" data-who="murata"><a class="news-card" href="https://writeup-inc.github.io/interviews/murata-referrals/">
+            <span class="news-top"><span><time datetime="2026-09-10">9月10日</time> 収録</span><span class="news-type">番外編・公開中</span></span>
+            <strong class="news-title">紹介の連鎖は、どう生まれたのか。</strong><span class="news-rule" aria-hidden="true"></span>
+            <span class="news-company">株式会社ライトアップ</span><span class="news-identity"><span>第一営業部</span><b>村田 峻平</b></span><span class="news-mark" aria-hidden="true">W</span>
+          </a></div>
         </div>
-        <a class="hero-feature" id="hero-feature" href="./yoshikawa/"><span><small id="hero-feature-kicker">編集初稿 ／ 第1話</small><b id="hero-feature-title">提案をいったん引っ込めて、聞き直した日</b></span><span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
@@ -501,32 +519,7 @@
         document.getElementById('profile-role').textContent = `株式会社ライトアップ ${p.role}`;
         document.getElementById('profile-count').textContent = `この人に関する記事・候補が${shown}件あります。`;
       }
-      // 名刺の名前を、選んだ人に合わせる
-      if (p) showCard(p);
-    }
-
-    const cfName = document.getElementById('cf-name'), cfDept = document.getElementById('cf-dept');
-    const heroFeature = document.getElementById('hero-feature');
-    const heroFeatureKicker = document.getElementById('hero-feature-kicker');
-    const heroFeatureTitle = document.getElementById('hero-feature-title');
-    function showCard(p) {
-      cfName.textContent = p.name;
-      cfDept.textContent = p.role;
-      const related = cards.find(c => c.tagName === 'A' && c.dataset.who.split(' ').includes(p.id));
-      heroFeature.href = related ? related.getAttribute('href') : `?who=${p.id}#stories`;
-      heroFeatureKicker.textContent = related ? related.querySelector('.episode').textContent : '取材準備中';
-      heroFeatureTitle.textContent = related ? related.querySelector('h4').textContent : `${p.name}さんに、これから聞きたいこと`;
-      heroFeature.classList.remove('is-changing');
-    }
-    let i = 0;
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInterval(() => {
-        if (state.who || heroFeature.matches(':hover, :focus')) return;
-        i = (i + 1) % PEOPLE.length;
-        cfName.style.opacity = 0;
-        heroFeature.classList.add('is-changing');
-        setTimeout(() => { showCard(PEOPLE[i]); cfName.style.opacity = 1; }, 450);
-      }, 3200);
+      document.querySelectorAll('.fall-slot').forEach(slot => slot.classList.toggle('is-selected', !!p && slot.dataset.who === p.id));
     }
 
     const init = new URL(location.href).searchParams.get('who');
