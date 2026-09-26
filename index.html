@@ -599,6 +599,10 @@
       profile.classList.toggle('is-open', !!p);
       document.body.classList.toggle('has-person', !!p);
       document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : overview;
+      document.querySelector('#draft-group .group-head h3').textContent = p ? `${p.name}の話` : 'まず、読みたい5つの話';
+      document.querySelector('#draft-group .group-head p').textContent = p ? `記事 ${document.querySelectorAll('#draft-group .article-card:not([hidden])').length}件` : '編集初稿4話・公開済み1話';
+      document.querySelector('#published-group .group-head h3').textContent = p ? 'あわせて読む' : 'これまでに語られたこと';
+      document.querySelector('#published-group .group-head p').textContent = p ? `公開済み ${document.querySelectorAll('#published-group .article-card:not([hidden])').length}件` : '公開済みの記録';
       if (p) {
         document.getElementById('profile-name').textContent = p.name;
         document.getElementById('profile-role').textContent = `株式会社ライトアップ ${p.role}`;
