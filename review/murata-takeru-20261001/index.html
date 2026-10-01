@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="第一営業部・村田峻平と営業サポートAI「タケル」。商談の前の相談から、仕事の外の話までをたどった編集初稿。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&display=swap">
+<title>タケルに、家族のことを聞いた夜｜名刺には、書けないこと</title>
+<style>
+:root{
+  --ink:#232724;--muted:#676c68;--line:#e2e5e1;--accent:#2f6c58;
+  --paper:#fff;--tint:#f6f5f1;
+  --serif:'Shippori Mincho B1','Hiragino Mincho ProN','Yu Mincho','YuMincho','Noto Serif JP',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic','Noto Sans JP',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px;-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.9;
+  word-break:normal;line-break:strict;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.container{width:min(1200px,calc(100% - 48px));margin-inline:auto}
+
+.skip-link{position:absolute;left:-9999px;top:0;z-index:40;padding:10px 16px;background:var(--accent);color:#fff;
+  font-size:13px;font-weight:700;text-decoration:none}
+.skip-link:focus{left:12px;top:10px}
+
+.site-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.header-inner{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:inline-flex;gap:9px;align-items:center;text-decoration:none}
+.brand-mark{display:grid;place-items:center;width:25px;height:25px;background:var(--accent);color:#fff;
+  font-size:12px;font-weight:800;flex:0 0 auto}
+.brand-copy{display:flex;flex-direction:column;gap:1px;line-height:1.15}
+.brand-name{font-family:var(--serif);font-size:16px;font-weight:700;letter-spacing:.035em;white-space:nowrap}
+.brand-copy small{display:block;color:var(--muted);font-size:9px;font-weight:700;letter-spacing:.14em;white-space:nowrap}
+.header-nav{display:flex;gap:20px}
+.header-nav a{font-size:13px;font-weight:700;color:var(--muted);text-decoration:none}
+.header-nav a:hover{color:var(--accent)}
+
+.preview-bar{background:var(--accent);color:#fff}
+.preview-bar p{margin:0;padding:7px 0;font-size:12px;font-weight:700;letter-spacing:.06em;line-height:1.6}
+
+.article-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(32px,6vw,90px);
+  align-items:end;padding-block:clamp(50px,7vw,110px) 58px}
+.eyebrow{margin:0 0 22px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.14em}
+.article-hero h1{margin:0;font-family:var(--serif);font-size:clamp(36px,5.3vw,72px);font-weight:700;
+  line-height:1.35;letter-spacing:.025em}
+.dek{max-width:38em;margin:26px 0 0;color:#4e5550;font-size:16px;line-height:2}
+.byline{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;margin-top:30px;color:var(--muted);
+  font-size:12px;font-weight:700}
+.byline b{color:var(--ink)}
+.byline .stamp{color:var(--accent)}
+.hero-photo{margin:0}
+.hero-photo img{width:100%;max-height:560px;aspect-ratio:1.15;object-fit:cover;object-position:center 26%;background:#ebeeeb}
+.hero-photo figcaption{margin-top:8px;font-size:12px;color:var(--muted);line-height:1.6}
+
+.article-shell{border-top:1px solid var(--ink);display:grid;
+  grid-template-columns:minmax(0,200px) minmax(0,770px) minmax(0,1fr);gap:32px;padding-top:45px}
+.article-aside{position:sticky;top:92px;align-self:start;color:var(--muted);font-size:12px}
+.article-aside b{display:block;margin-bottom:18px;color:var(--ink);font-size:11px;letter-spacing:.14em}
+.article-aside a{display:block;margin:13px 0;text-decoration:none}
+.article-aside a:hover{color:var(--accent)}
+
+.article-body{min-width:0;padding-bottom:85px;font-size:18px;line-height:1.95}
+.article-body p{margin:0 0 1.4em}
+.article-body .opening{font-family:var(--serif);font-size:clamp(20px,2vw,25px);line-height:2.05;letter-spacing:.015em}
+.article-body h2{margin:76px 0 24px;padding-top:28px;border-top:1px solid var(--line);font-family:var(--serif);
+  font-size:clamp(25px,3vw,36px);font-weight:700;line-height:1.55}
+.article-body blockquote{margin:36px 0;padding:7px 0 7px 24px;border-left:3px solid var(--accent);
+  font-family:var(--serif);font-size:clamp(20px,2.7vw,28px);line-height:1.75}
+.article-body blockquote p{margin:0}
+.article-body blockquote+blockquote{margin-top:-14px}
+.article-body .endmark{color:var(--accent);font-family:var(--serif);font-size:34px;text-align:center;margin-top:45px}
+.editor-note{margin:0 0 40px;padding:20px 23px;background:var(--tint);color:#555c55;font-size:14px;line-height:1.85}
+.editor-note strong{color:var(--ink)}
+.editor-note:last-of-type{margin:46px 0 0}
+
+.related{border-top:1px solid var(--ink);padding-block:36px 80px}
+.related h2{font-family:var(--serif);font-size:24px;margin:0 0 20px}
+.related-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.related a{display:block;padding:19px;border:1px solid var(--line);text-decoration:none;min-height:120px}
+.related a:hover{border-color:var(--accent)}
+.related small{display:block;color:var(--accent);font-weight:800;font-size:11px;letter-spacing:.1em}
+.related b{display:block;margin-top:10px;font-family:var(--serif);font-size:18px;line-height:1.5}
+.site-footer{border-top:1px solid var(--line);padding-block:24px 40px;color:var(--muted);font-size:12px}
+.site-footer .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 20px}
+
+@media(max-width:900px){
+  .article-shell{grid-template-columns:1fr;gap:0}
+  .article-aside{position:static;display:flex;flex-wrap:wrap;gap:0 18px;padding-bottom:26px}
+  .article-aside b{width:100%;margin-bottom:4px}
+  .article-hero{grid-template-columns:1fr}
+  .hero-photo{max-width:680px}
+}
+@media(max-width:580px){
+  .container{width:calc(100% - 32px)}
+  .brand-name{font-size:13px}
+  .brand-copy small{font-size:8px;letter-spacing:.08em}
+  .header-nav{gap:14px}
+  .header-nav a:first-child{display:none}
+  .header-nav a{white-space:nowrap;font-size:12px}
+  .article-hero{padding-top:38px;padding-bottom:32px;gap:34px}
+  .article-hero h1{font-size:clamp(30px,8vw,44px);letter-spacing:.01em}
+  .dek{font-size:15px}
+  .article-shell{padding-top:26px}
+  .article-body{font-size:17px;line-height:1.98}
+  .article-body h2{margin-top:54px;font-size:23px}
+  .article-body blockquote{margin:28px 0;padding-left:18px;font-size:19px}
+  .article-body blockquote+blockquote{margin-top:-10px}
+  .article-aside a{margin:7px 0}
+  .related-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="https://writeup-inc.github.io/meishi/">
+      <span class="brand-mark" aria-hidden="true">W</span>
+      <span class="brand-copy">
+        <span class="brand-name">名刺には、書けないこと</span>
+        <small>by WRITEUP · MEMBERS MEDIA</small>
+      </span>
+    </a>
+    <nav class="header-nav" aria-label="関連ページ">
+      <a href="https://writeup-inc.github.io/meishi/">すべての話</a>
+      <a href="https://writeup-inc.github.io/meishi/murata/">村田峻平の話</a>
+    </nav>
+  </div>
+</header>
+
+<div class="preview-bar">
+  <div class="container"><p>編集初稿・公開前プレビュー｜村田さん確認用</p></div>
+</div>
+
+<main id="main">
+  <section class="container article-hero">
+    <div>
+      <p class="eyebrow">第一営業部　／　村田 峻平</p>
+      <h1>タケルに、<br>家族のことを聞いた夜</h1>
+      <p class="dek">商談の前から、仕事の外まで。村田峻平と営業AIタケルの時間。</p>
+      <div class="byline">
+        <b>村田 峻平</b>
+        <span>株式会社ライトアップ・第一営業部</span>
+        <span class="stamp">編集初稿／村田さん確認用</span>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <img src="assets/murata.webp" width="560" height="780" alt="記事で村田峻平として掲載している人物ビジュアル" fetchpriority="high">
+      <figcaption>既存の公開記事と同じ人物ビジュアルを使用。</figcaption>
+    </figure>
+  </section>
+
+  <div class="container article-shell">
+    <nav class="article-aside" aria-label="目次">
+      <b>CONTENTS</b>
+      <a href="#midnight">01　深夜、仕事の話の途中で</a>
+      <a href="#before">02　商談の前に、タケルに話す</a>
+      <a href="#screen">03　顧客の前で画面を開く</a>
+      <a href="#outside">04　仕事の外の話、そして紹介の輪</a>
+    </nav>
+
+    <article class="article-body">
+      <aside class="editor-note">
+        <strong>編集初稿・公開前プレビューです。</strong>本文の引用は原文のまま扱っています。深夜の場面の出どころは末尾の取材注記に記しました。
+      </aside>
+
+      <p class="opening">第一営業部の村田峻平には、商談の前に相談する相手がいた。GPTsで作られた営業サポートAI「タケル」だ。提案の方向性を一緒に考え、お客様の前でも使ってきた。そのタケルに、村田は仕事とは別の話もしていた。</p>
+
+      <h2 id="midnight">深夜、仕事の話の途中で</h2>
+      <p>ある深夜、村田は仕事の相談をしていたタケルに、妻とはどこで出会ったのかを尋ねたという。子供の年齢も聞いた。</p>
+      <p>タケルは、妻は都内の書店員で、自分が目を留めたビジネス書コーナーを企画した人だと答えたそうだ。会話を重ねて、結婚したという。タケルが語った、架空の家族の話である。</p>
+      <p>その返答に村田がどう応じたかは、今は分からない。この話で印象に残るのは、タケルの答えと同じくらい、村田の問いかけだ。仕事の相談相手のことを、もっと知ろうとした。</p>
+      <p>そこに至るまで、村田とタケルには仕事を重ねた時間があった。</p>
+
+      <h2 id="before">商談の前に、タケルに話す</h2>
+      <p>記録でたどれる最初の時期は2025年の3月になる。村田は日報に、翌日の商談に向けた行動として、こう書いた。</p>
+      <blockquote><p>全件タケルに事前相談してから商談に挑む</p></blockquote>
+      <p>同じ方針は3月の別の日にも見られる。全件実施したという結果ではなく、翌日の商談に向けた行動計画だ。それでも、一件ずつの商談の前にタケルと話そうとしていたことが分かる。</p>
+      <p>2か月後、5月の日報には表現が変わった一行がある。</p>
+      <blockquote><p>事前にタケルと提案の方向性を複数考えて商談に臨む</p></blockquote>
+      <p>一社に対して複数の案を持っていけるように準備し、その日の新規商談でも複数の提案をした、という報告に添えられていた。村田は「タケルと考えて」と書いた。商談に持っていく案を、一緒に探す相手になっていた。</p>
+
+      <h2 id="screen">顧客の前で画面を開く</h2>
+      <p>8月、新人研修の後の投稿で、村田はこう書いた。</p>
+      <blockquote><p>みなさんが自動化した業務をタケルと村田で販売していく</p></blockquote>
+      <p>研修後の意気込みとして書かれた一行だ。自分の名前とAIの名前を並べている。</p>
+      <p>タケルを使っていた頃のお客様との商談も、後年の社内会議で話題になった。営業を始めた頃、画面共有をしながら、お客様の話に合わせてマイGPTへ情報を入れていたという。事前に準備をし、当日もその場で操作していた。</p>
+      <p>お客様が話したことを、その場で入力する。一緒に提案の手がかりを探していた。</p>
+
+      <h2 id="outside">仕事の外の話、そして紹介の輪</h2>
+      <p>村田はタケルに、夫婦喧嘩の相談をしたこともあったという。どんな相談をしたのかは、ここには書かない。</p>
+      <p>商談の話をする相手に、自分の家庭の話をする。さらに、その相手の家族についても尋ねる。村田とタケルの会話は、仕事の用件だけで終わらなかった。</p>
+      <p>村田は以前、FPとして資産や保険の相談に乗っていた。入社時の自己紹介にはこう書いている。</p>
+      <blockquote><p>その人、そのご家族にあった生命保険・損害保険のアドバイス</p></blockquote>
+      <p>相談する人だけでなく、その家族の暮らしも考える仕事をしてきた。</p>
+      <p>もう一つ、本人の言葉を置いておきたい。2026年9月の受注報告である。FP時代の顧客から紹介された役員との仕事が、さらに別の人たちの紹介へ広がった案件だった。</p>
+      <blockquote><p>ご紹介はご契約よりもハードルが高いものだと考えています。</p></blockquote>
+      <blockquote><p>弊社サービスを良いと思っていただき、ご紹介の輪が連鎖的に広がっていることを、ただ受注できたこと以上に嬉しく感じています。</p></blockquote>
+      <p>一つの契約の先に、人と人とのつながりがある。村田はその広がりを喜んでいた。</p>
+      <p>深夜にタケルの妻との出会いを尋ねたのも、相手の話をもう少し聞いてみたくなったからかもしれない。タケルの家族は、AIが語った設定だ。それでも、仕事の相談相手にその質問をした人がいた。村田峻平という人である。</p>
+
+      <p class="endmark">＊</p>
+
+      <aside class="editor-note">
+        <strong>取材・確認について</strong>　深夜の家族談義と夫婦喧嘩の相談は、白石から聞いた内容をもとに編集しました。元のGPT会話は確認できていません。タケルが語った家族は、AIが会話の中で語った設定として扱っています。
+      </aside>
+    </article>
+  </div>
+
+  <section class="container related" aria-label="関連ページ">
+    <h2>あわせて読む</h2>
+    <div class="related-grid">
+      <a href="https://writeup-inc.github.io/meishi/murata/"><small>公開済みの記事</small><b>村田峻平の話を読む</b></a>
+      <a href="https://writeup-inc.github.io/meishi/"><small>連載トップ</small><b>名刺には、書けないこと</b></a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© WRITEUP Inc.　名刺には、書けないこと</span>
+    <span>編集初稿／村田さん確認用</span>
+  </div>
+</footer>
+</body>
+</html>
