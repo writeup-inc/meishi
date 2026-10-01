@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img">
+<rect width="600" height="600" fill="#eef0f5"/>
+<circle cx="300" cy="318" r="232" fill="#dde3ee"/>
+<g transform="translate(88 138) rotate(-12)"><path d="M11 0 V62 a36 36 0 0 0 72 0 V0" fill="none" stroke="#9aa5b5" stroke-width="22"/><rect x="0" y="0" width="22" height="22" fill="#c0392b"/><rect x="72" y="0" width="22" height="22" fill="#c0392b"/></g>
+<g fill="#7d8aa0"><circle cx="152" cy="262" r="5"/><circle cx="132" cy="276" r="4"/><circle cx="172" cy="278" r="4"/><circle cx="150" cy="292" r="3"/></g>
+<path d="M128 600 C136 478 210 424 300 424 C390 424 464 478 472 600 Z" fill="#3f5f8a"/>
+<path d="M258 426 L300 512 L342 426 Z" fill="#ffffff"/>
+<path d="M258 426 L286 500 L262 520 L238 440 Z" fill="#3f5f8a" opacity=".85"/>
+<path d="M342 426 L314 500 L338 520 L362 440 Z" fill="#3f5f8a" opacity=".85"/>
+<rect x="277" y="360" width="46" height="74" rx="20" fill="#dcb89a"/>
+<path d="M214 300 C200 190 250 170 300 170 C350 170 400 190 386 300 L392 392 C360 372 340 380 300 380 C260 380 240 372 208 392 Z" fill="#3a2a22"/>
+<ellipse cx="300" cy="296" rx="80" ry="92" fill="#e9ccb1"/>
+<path d="M222 262 C226 206 270 190 304 192 C348 194 380 214 380 262 C350 238 322 226 300 226 C270 230 244 244 222 262 Z" fill="#3a2a22"/>
+</svg>
