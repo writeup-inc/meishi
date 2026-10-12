@@ -39,6 +39,7 @@
     html { scroll-behavior:smooth; scroll-padding-top:72px; }
     body { margin:0; color:var(--ink); background:var(--paper); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif; line-height:1.7; -webkit-font-smoothing:antialiased; }
     a { color:inherit; }
+    [hidden] { display:none !important; }
     button { font:inherit; color:inherit; }
     .container { width:min(var(--container),calc(100% - 48px)); margin-inline:auto; }
     :focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
@@ -613,7 +614,7 @@
       { id:'matsui', name:'松井 友美', role:'第二営業部 リーダー', dept:'sales2', img:'./assets/member-matsui.png', about:null, intro:'「理念は磁石」。講演で聞いた言葉が、白石の「すぐ電話して」とつながった日。' },
       { id:'kuroki', name:'黒木 亜美', role:'第二営業部', dept:'sales2', img:null, about:null, intro:'「自分らしさは探すものではなく、行動して作るもの」。講演で聞いた言葉に、これまでの自分を肯定された。' },
       { id:'furihata', name:'降旗 一也', role:'第二営業部 リーダー', dept:'sales2', img:'./assets/member-furihata.png', about:null, intro:'誘導の担当で、講演は途中から聞いた。それでも残ったのは「全てはESに」だった。' },
-      { id:'suzuki', name:'鈴木 淳', role:'IS', dept:'is', img:null, about:null, intro:'「地方の企業は採用が難しい」は、思い込みだった。講演で聞いた数字に、考えが変わった。' },
+      { id:'suzuki', name:'鈴木 淳', role:'第一営業部', dept:'sales1', img:null, about:null, intro:'「地方の企業は採用が難しい」は、思い込みだった。講演で聞いた数字に、考えが変わった。' },
       { id:'tanaka', name:'田中 伸幸', role:'IS', dept:'is', img:null, about:null, intro:'社長が現場に降りて、営業に走っている。そこにAIを入れて、本来の役割に戻す。' },
       { id:'shiraishi', name:'白石 崇', role:'代表', dept:'leadership', img:'./assets/portrait-07.jpg', about:'./shiraishi-memory/', intro:'数字の「なぜ？」は残る。でもサウナの「縦」はまだ謎。タケルが聞いた、白石の記憶の話。' },
       {"id":"shinomura","name":"篠村 未菜","role":"第二営業部","dept":"sales2","img":null,"about":null,"intro":"仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
@@ -690,7 +691,11 @@
       else render();
     }));
     personSearch.addEventListener('input', render);
-    document.getElementById('clear').addEventListener('click', () => setWho(null, true));
+    document.getElementById('clear').addEventListener('click', () => {
+      state.dept = 'all';
+      personSearch.value = '';
+      setWho(null, true);
+    });
     document.getElementById('copy-url').addEventListener('click', async e => {
       const btn = e.currentTarget, label = btn.textContent;
       const selected = PEOPLE.find(p => p.id === state.who);
@@ -730,7 +735,9 @@
       document.getElementById('people-empty').classList.toggle('is-show', matching.length === 0 && !pendingSlots.some(slot => !slot.hidden));
       let shown = 0;
       cards.forEach(c => {
-        const ok = (!state.who || c.dataset.who.split(' ').includes(state.who)) && (state.dept === 'all' || c.dataset.dept === state.dept);
+        const participantIds = c.dataset.who.split(' ');
+        const participantInDept = PEOPLE.some(p => participantIds.includes(p.id) && inDept(p, state.dept));
+        const ok = (!state.who || participantIds.includes(state.who)) && (state.dept === 'all' || c.dataset.dept === state.dept || participantInDept);
         c.hidden = !ok; if (ok) shown++;
         c.classList.remove('person-feature','person-mini');
       });
@@ -745,7 +752,7 @@
       document.body.classList.toggle('has-person', !!p);
       document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : state.dept !== 'all' ? (shown ? `${DEPT_LABELS[state.dept]}の記事・候補 ${shown}件` : `${DEPT_LABELS[state.dept]}の記事を準備中`) : overview;
       document.querySelector('#draft-group .group-head h3').textContent = p ? `${p.name}の話` : '営業の現場から';
-      document.querySelector('#draft-group .group-head p').textContent = p ? `記事・候補 ${shown}件` : overview;
+      document.querySelector('#draft-group .group-head p').textContent = p || state.dept !== 'all' ? `記事・候補 ${shown}件` : overview;
       const visibleCards = cards.filter(c => !c.hidden);
       const featured = p ? (visibleCards.find(c => c.matches('a[href^="./"]')) || visibleCards.find(c => c.matches('a')) || visibleCards[0]) : null;
       const related = p ? visibleCards.filter(c => c !== featured) : [];
