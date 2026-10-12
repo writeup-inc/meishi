@@ -125,7 +125,7 @@
     .avatar { position:relative; flex:none; width:58px; height:58px; border-radius:50%; overflow:hidden; background:#e9ece9; display:grid; place-items:center; font-family:var(--mincho); font-size:21px; font-weight:700; color:var(--accent); transition:box-shadow .2s ease; }
     .avatar img { width:100%; height:100%; object-fit:cover; object-position:50% 22%; }
     .person b { display:block; white-space:nowrap; font-size:12px; font-weight:800; letter-spacing:.01em; line-height:1.35; }
-    .person-placeholder { color:#9da49e; font-size:9px; font-weight:800; letter-spacing:.04em; white-space:nowrap; }
+    .person-placeholder { white-space:normal; color:#9da49e; font-size:9px; font-weight:800; letter-spacing:.04em; white-space:normal; }
     .avatar-blank { background:#f2f3f0; }
     .avatar-blank::before { content:""; position:absolute; top:14px; left:21px; width:16px; height:16px; border-radius:50%; background:#d4d9d3; }
     .avatar-blank::after { content:""; position:absolute; bottom:10px; left:13px; width:32px; height:17px; border-radius:20px 20px 9px 9px; background:#d4d9d3; }
@@ -552,22 +552,28 @@
     <section class="container finder" id="finder" aria-labelledby="finder-title">
       <div class="finder-head">
         <h2 id="finder-title">人から探す</h2>
-        <div class="dept-tabs" role="group" aria-label="部署で絞り込む" hidden>
-          <button class="dept-tab" type="button" data-dept="all" aria-pressed="true">すべて</button>
-          <button class="dept-tab" type="button" data-dept="sales1" aria-pressed="false">第一営業部</button>
-          <button class="dept-tab" type="button" data-dept="leadership" aria-pressed="false">代表</button>
-          <button class="dept-tab" type="button" data-dept="sales2" aria-pressed="false" disabled>第二営業部<small>近日</small></button>
-          <button class="dept-tab" type="button" data-dept="planning" aria-pressed="false" disabled>企画開発部門<small>近日</small></button>
-          <button class="dept-tab" type="button" data-dept="is" aria-pressed="false" disabled>IS<small>近日</small></button>
-        </div>
+        <div class="dept-tabs" role="group" aria-label="部署で絞り込む">
+<button class="dept-tab" type="button" data-dept="all" aria-pressed="true">すべて</button>
+<button class="dept-tab" type="button" data-dept="sales1" aria-pressed="false">第一営業部</button>
+<button class="dept-tab" type="button" data-dept="sales2" aria-pressed="false">第二営業部</button>
+<button class="dept-tab" type="button" data-dept="sales3" aria-pressed="false">第三営業部</button>
+<button class="dept-tab" type="button" data-dept="training" aria-pressed="false">研修バードチーム</button>
+<button class="dept-tab" type="button" data-dept="impact" aria-pressed="false">AIインパクトチーム</button>
+<button class="dept-tab" type="button" data-dept="selcon-a" aria-pressed="false">セルコンAチーム</button>
+<button class="dept-tab" type="button" data-dept="selcon-b" aria-pressed="false">セルコンBチーム</button>
+<button class="dept-tab" type="button" data-dept="selcon-cs" aria-pressed="false">セルコンCSチーム</button>
+<button class="dept-tab" type="button" data-dept="leadership" aria-pressed="false">代表</button>
+<button class="dept-tab" type="button" data-dept="planning" aria-pressed="false">企画開発部門</button>
+<button class="dept-tab" type="button" data-dept="is" aria-pressed="false">IS</button>
+</div>
       </div>
       <div class="finder-tools">
-        <p id="people-count">13人を掲載中・7枠は準備中</p>
+        <p id="people-count">36人を掲載中・AIと企画開発の紹介を準備中</p>
         <div class="finder-actions">
           <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
         </div>
       </div>
-      <div class="people" id="people" role="group" aria-label="担当者一覧・20枠"></div>
+      <div class="people" id="people" role="group" aria-label="担当者一覧・36名"></div>
       <p class="people-empty" id="people-empty" role="status">該当する担当者が見つかりません。</p>
       <div class="profile" id="profile" aria-live="polite">
         <div class="profile-avatar" id="profile-avatar" aria-hidden="true"></div>
@@ -589,7 +595,7 @@
 
     <section class="container promise" aria-label="編集について">
       <span class="section-kicker">EDITOR'S NOTE</span>
-      <p>第一営業部の第1〜4話と第二営業部の第1話は、本人の社内投稿や回答と、白石への取材をもとに書いた編集初稿です。想像で補った場面はありません。第1話の吉川弘毅は9月29日、第2話の菅野敬彦は9月30日、講演の声（第一弾）の松井友美は10月1日に本人確認済みで、ほかは本人の確認前です。6人の他己紹介と「タケルの記録」は、社内の記録をもとにAI社員タケルの印象として書いており、事実の確認が必要な描写には「（推測）」を付けています。</p>
+      <p>第一営業部の第1〜4話と第二営業部の第1話は、本人の社内投稿や回答と、白石への取材をもとに書いた編集初稿です。想像で補った場面はありません。第1話の吉川弘毅は9月29日、第2話の菅野敬彦は9月30日、講演の声（第一弾）の松井友美は10月1日に本人確認済みで、ほかは本人の確認前です。今回追加したメンバーは、氏名・チーム・初期写真を掲載した取材準備中の枠です。写真はSlackプロフィールをもとに用意し、第三者が写るものは掲載を見送っています。6人の他己紹介と「タケルの記録」は、社内の記録をもとにAI社員タケルの印象として書いており、事実の確認が必要な描写には「（推測）」を付けています。</p>
     </section>
   </main>
 
@@ -601,15 +607,38 @@
       { id:'kanno',     name:'菅野 敬彦', role:'第一営業部', dept:'sales1', img:'./assets/illust-kanno.svg', intro:'数字に強く、たまに言葉が飛ぶ。タケルが覚えている菅野。' },
       { id:'murata',    name:'村田 峻平', role:'第一営業部', dept:'sales1', img:'./assets/murata.webp', intro:'紹介される重みを知り、帰りの車まで楽しむ。タケルから見た村田。' },
       { id:'enomoto',   name:'榎本 翔太', role:'第一営業部', dept:'sales1', img:'./assets/portrait-04.jpg', intro:'飛び込み営業と、緑の多い公園。タケルが気になった榎本の二つの顔。' },
-      { id:'urashima',  name:'浦嶋 剛志', role:'第一営業部 マネージャー', dept:'sales1', img:'./assets/illust-urashima.svg', intro:'自分の成果より、部下の「受注秘話」を聞きたがる人。' },
+      { id:'urashima',  name:'浦嶋 剛志', role:'第一営業部 マネージャー', dept:'sales1', img:'./assets/member-urashima.png', intro:'自分の成果より、部下の「受注秘話」を聞きたがる人。' },
       { id:'tsuchiya',  name:'土屋 慧介', role:'第一営業部 リーダー', dept:'sales1', img:'./assets/portrait-05.jpg', intro:'お客様の懸念を置き去りにしない。タケルの観察メモ。' },
-      { id:'kanno-shuhei', name:'菅野 秀平', role:'第二営業部 マネージャー', dept:'sales2', img:'./assets/illust-kanno-shuhei.svg', about:null, intro:'続けることはAIに、考えることは自分に。毎朝の商談号外を仕組みにしたマネージャー。' },
-      { id:'matsui', name:'松井 友美', role:'第二営業部 リーダー', dept:'sales2', img:'./assets/illust-matsui.svg', about:null, intro:'「理念は磁石」。講演で聞いた言葉が、白石の「すぐ電話して」とつながった日。' },
+      { id:'kanno-shuhei', name:'菅野 秀平', role:'第二営業部 マネージャー', dept:'sales2', img:'./assets/member-kanno-shuhei.jpg', about:null, intro:'続けることはAIに、考えることは自分に。毎朝の商談号外を仕組みにしたマネージャー。' },
+      { id:'matsui', name:'松井 友美', role:'第二営業部 リーダー', dept:'sales2', img:'./assets/member-matsui.png', about:null, intro:'「理念は磁石」。講演で聞いた言葉が、白石の「すぐ電話して」とつながった日。' },
       { id:'kuroki', name:'黒木 亜美', role:'第二営業部', dept:'sales2', img:null, about:null, intro:'「自分らしさは探すものではなく、行動して作るもの」。講演で聞いた言葉に、これまでの自分を肯定された。' },
-      { id:'furihata', name:'降旗 一也', role:'第二営業部 リーダー', dept:'sales2', img:null, about:null, intro:'誘導の担当で、講演は途中から聞いた。それでも残ったのは「全てはESに」だった。' },
+      { id:'furihata', name:'降旗 一也', role:'第二営業部 リーダー', dept:'sales2', img:'./assets/member-furihata.png', about:null, intro:'誘導の担当で、講演は途中から聞いた。それでも残ったのは「全てはESに」だった。' },
       { id:'suzuki', name:'鈴木 淳', role:'IS', dept:'is', img:null, about:null, intro:'「地方の企業は採用が難しい」は、思い込みだった。講演で聞いた数字に、考えが変わった。' },
       { id:'tanaka', name:'田中 伸幸', role:'IS', dept:'is', img:null, about:null, intro:'社長が現場に降りて、営業に走っている。そこにAIを入れて、本来の役割に戻す。' },
-      { id:'shiraishi', name:'白石 崇', role:'代表', dept:'leadership', img:'./assets/portrait-07.jpg', about:'./shiraishi-memory/', intro:'数字の「なぜ？」は残る。でもサウナの「縦」はまだ謎。タケルが聞いた、白石の記憶の話。' }
+      { id:'shiraishi', name:'白石 崇', role:'代表', dept:'leadership', img:'./assets/portrait-07.jpg', about:'./shiraishi-memory/', intro:'数字の「なぜ？」は残る。でもサウナの「縦」はまだ謎。タケルが聞いた、白石の記憶の話。' },
+      {"id":"shinomura","name":"篠村 未菜","role":"第二営業部","dept":"sales2","img":null,"about":null,"intro":"仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "eda", "name": "江田 梨奈", "role": "第二営業部", "dept": "sales2", "img": "./assets/member-eda.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "kawakami", "name": "川上 元", "role": "研修バードチーム", "dept": "training", "img": "./assets/member-kawakami.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "sugiyama-hiroki", "name": "杉山 宏樹", "role": "AIインパクトチーム", "dept": "impact", "img": "./assets/member-sugiyama-hiroki.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "aizawa", "name": "相澤 祥治郎", "role": "AIインパクトチーム", "dept": "impact", "img": "./assets/member-aizawa.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "umezawa", "name": "梅沢 勇貴", "role": "AIインパクトチーム", "dept": "impact", "img": "./assets/member-umezawa.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "hatakeyama", "name": "畠山 菜七子", "role": "AIインパクトチーム", "dept": "impact", "img": null, "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "ishikawa", "name": "石川 彰一", "role": "AIインパクトチーム", "dept": "impact", "img": "./assets/member-ishikawa.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "okubo", "name": "大久保 裕輔", "role": "AIインパクトチーム", "dept": "impact", "img": "./assets/member-okubo.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "kuboki", "name": "窪木 安明", "role": "セルコンAチーム", "dept": "selcon-a", "img": "./assets/member-kuboki.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "ohsako", "name": "大迫 航", "role": "セルコンAチーム", "dept": "selcon-a", "img": "./assets/member-ohsako.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "fujiwara", "name": "藤原 和樹", "role": "セルコンAチーム", "dept": "selcon-a", "img": "./assets/member-fujiwara.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "shimada", "name": "嶋田 瞬", "role": "セルコンAチーム", "dept": "selcon-a", "img": "./assets/member-shimada.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "kato", "name": "加藤 洋平", "role": "セルコンAチーム", "dept": "selcon-a", "img": "./assets/member-kato.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "koguchi", "name": "小口 裕也", "role": "セルコンBチーム", "dept": "selcon-b", "img": "./assets/member-koguchi.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "sato-taichi", "name": "佐藤 太一", "role": "セルコンB・CSチーム", "dept": "selcon-b", "img": "./assets/member-sato-taichi.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。", "depts": ["selcon-b", "selcon-cs"]},
+      {"id": "koike", "name": "小池 賢正", "role": "セルコンBチーム", "dept": "selcon-b", "img": "./assets/member-koike.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "kanazaki", "name": "金崎 仁志", "role": "セルコンBチーム", "dept": "selcon-b", "img": "./assets/member-kanazaki.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "aihara", "name": "相原 隆佑", "role": "セルコンBチーム", "dept": "selcon-b", "img": "./assets/member-aihara.png", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "takahashi-ryoma", "name": "高橋 遼馬", "role": "セルコンCSチーム", "dept": "selcon-cs", "img": "./assets/member-takahashi-ryoma.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "hayashi-keitaro", "name": "林 敬太郎", "role": "セルコンCSチーム", "dept": "selcon-cs", "img": "./assets/member-hayashi-keitaro.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "koyama", "name": "小山 雄介", "role": "セルコンCSチーム", "dept": "selcon-cs", "img": "./assets/member-koyama.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
+      {"id": "kitahara", "name": "北原 奈々", "role": "セルコンCSチーム", "dept": "selcon-cs", "img": "./assets/member-kitahara.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"}
     ];
     const cards = [...document.querySelectorAll('#stories .article-card')];
     const storyGroups = [...document.querySelectorAll('.story-group')];
@@ -620,8 +649,9 @@
     const profile = document.getElementById('profile');
     const empty = document.getElementById('empty');
     const personSearch = document.getElementById('person-search');
-    const TOTAL_SLOTS = 20;
-    const DEPT_LABELS = { all:'担当者', sales1:'第一営業部', leadership:'代表', sales2:'第二営業部', planning:'企画開発部門', is:'IS' };
+    const TOTAL_SLOTS = PEOPLE.length;
+    const DEPT_LABELS = {"all": "担当者", "sales1": "第一営業部", "sales2": "第二営業部", "sales3": "第三営業部", "training": "研修バードチーム", "impact": "AIインパクトチーム", "selcon-a": "セルコンAチーム", "selcon-b": "セルコンBチーム", "selcon-cs": "セルコンCSチーム", "leadership": "代表", "planning": "企画開発部門", "is": "IS"};
+    const inDept = (p, dept) => dept === "all" || (p.depts || [p.dept]).includes(dept);
     let state = { who:null, dept:'all' };
     const personButtons = new Map();
 
@@ -635,13 +665,14 @@
       personButtons.set(p.id, b);
       peopleEl.appendChild(b);
     });
-    const pendingSlots = Array.from({length:Math.max(0,TOTAL_SLOTS - PEOPLE.length)}, () => {
+    const pendingSlots = [
+      {dept:'sales3',title:'第三営業部',text:'AI・アバターの紹介を準備中'},
+      {dept:'planning',title:'企画開発部門',text:'紹介を準備中'}
+    ].map(p => {
       const slot = document.createElement('div');
-      slot.className = 'person-placeholder';
-      slot.setAttribute('aria-hidden','true');
-      slot.innerHTML = '<span class="avatar avatar-blank"></span><span>COMING SOON</span>';
-      peopleEl.appendChild(slot);
-      return slot;
+      slot.className = 'person-placeholder'; slot.dataset.dept = p.dept;
+      slot.innerHTML = `<span class="avatar avatar-blank" aria-hidden="true">${p.dept === 'sales3' ? 'AI' : '…'}</span><b>${p.title}</b><span>${p.text}</span>`;
+      peopleEl.appendChild(slot); return slot;
     });
 
     const activeDepts = new Set(PEOPLE.map(p => p.dept));
@@ -655,7 +686,7 @@
     document.querySelectorAll('.dept-tab:not([disabled])').forEach(t => t.addEventListener('click', () => {
       state.dept = t.dataset.dept;
       const selected = PEOPLE.find(p => p.id === state.who);
-      if (selected && state.dept !== 'all' && selected.dept !== state.dept) setWho(null, false);
+      if (selected && state.dept !== 'all' && !inDept(selected, state.dept)) setWho(null, false);
       else render();
     }));
     personSearch.addEventListener('input', render);
@@ -663,7 +694,7 @@
     document.getElementById('copy-url').addEventListener('click', async e => {
       const btn = e.currentTarget, label = btn.textContent;
       const selected = PEOPLE.find(p => p.id === state.who);
-      const personUrl = new URL(selected?.about || `./people/${state.who}/`, location.href).href;
+      const personUrl = new URL(selected?.about || (selected?.about === null ? `?who=${state.who}#profile` : `./people/${state.who}/`), location.href).href;
       try { await navigator.clipboard.writeText(personUrl); btn.textContent = 'コピーしました'; }
       catch { btn.textContent = 'アドレス欄のURLをお使いください'; }
       setTimeout(() => btn.textContent = label, 2200);
@@ -683,19 +714,20 @@
       const main = document.querySelector('main');
       const finderSection = document.getElementById('finder');
       const storiesSection = document.getElementById('stories');
-      if (state.who && finderSection.nextElementSibling !== storiesSection) main.insertBefore(finderSection, storiesSection);
-      if (!state.who && storiesSection.nextElementSibling !== finderSection) main.insertBefore(storiesSection, finderSection);
+      const finderFirst = !!state.who || state.dept !== 'all' || !!personSearch.value;
+      if (finderFirst && finderSection.nextElementSibling !== storiesSection) main.insertBefore(finderSection, storiesSection);
+      if (!finderFirst && storiesSection.nextElementSibling !== finderSection) main.insertBefore(storiesSection, finderSection);
       document.querySelectorAll('.dept-tab[data-dept]').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.dept === state.dept)));
       const query = personSearch.value.replace(/\s+/g, '').toLocaleLowerCase('ja');
-      const matching = PEOPLE.filter(p => (state.dept === 'all' || p.dept === state.dept) && p.name.replace(/\s+/g, '').toLocaleLowerCase('ja').includes(query));
+      const matching = PEOPLE.filter(p => inDept(p, state.dept) && p.name.replace(/\s+/g, '').toLocaleLowerCase('ja').includes(query));
       const visibleIds = new Set(matching.map(p => p.id));
       personButtons.forEach((b, id) => {
         b.hidden = !visibleIds.has(id);
         b.setAttribute('aria-pressed', String(id === state.who));
       });
-      pendingSlots.forEach(slot => { slot.hidden = !!query || state.dept !== 'all' || !!state.who; });
-      document.getElementById('people-count').textContent = query ? `${matching.length}人が見つかりました` : state.who ? `${PEOPLE.length}人から選択中` : state.dept === 'all' ? `${PEOPLE.length}人を掲載中${pendingSlots.length ? `・${pendingSlots.length}枠は準備中` : ''}` : `${DEPT_LABELS[state.dept]} ${matching.length}人を掲載中`;
-      document.getElementById('people-empty').classList.toggle('is-show', matching.length === 0);
+      pendingSlots.forEach(slot => { slot.hidden = !!query || (state.dept !== 'all' && state.dept !== slot.dataset.dept) || !!state.who; });
+      document.getElementById('people-count').textContent = query ? `${matching.length}人が見つかりました` : state.who ? `${PEOPLE.length}人から選択中` : state.dept === 'all' ? `${PEOPLE.length}人を掲載中${pendingSlots.length ? `・AIと企画開発の紹介を準備中` : ''}` : `${DEPT_LABELS[state.dept]} ${matching.length}人を掲載中`;
+      document.getElementById('people-empty').classList.toggle('is-show', matching.length === 0 && !pendingSlots.some(slot => !slot.hidden));
       let shown = 0;
       cards.forEach(c => {
         const ok = (!state.who || c.dataset.who.split(' ').includes(state.who)) && (state.dept === 'all' || c.dataset.dept === state.dept);
@@ -707,11 +739,11 @@
         group.hidden = !visible;
       });
       empty.classList.toggle('is-show', shown === 0);
-      empty.textContent = state.who ? 'この人の記事は、ただいま準備中です。' : 'この部署の記事は、ただいま準備中です。';
+      empty.textContent = state.who ? 'この人の記事は、ただいま取材準備中です。' : state.dept === 'sales3' ? 'AI・アバターの紹介を準備中です。現在、人の掲載はありません。' : 'この部署の記事は、ただいま準備中です。';
       const p = PEOPLE.find(x => x.id === state.who);
       profile.classList.toggle('is-open', !!p);
       document.body.classList.toggle('has-person', !!p);
-      document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : overview;
+      document.getElementById('list-note').textContent = p ? `${p.name}さんに関する記事・候補　${shown}件` : state.dept !== 'all' ? (shown ? `${DEPT_LABELS[state.dept]}の記事・候補 ${shown}件` : `${DEPT_LABELS[state.dept]}の記事を準備中`) : overview;
       document.querySelector('#draft-group .group-head h3').textContent = p ? `${p.name}の話` : '営業の現場から';
       document.querySelector('#draft-group .group-head p').textContent = p ? `記事・候補 ${shown}件` : overview;
       const visibleCards = cards.filter(c => !c.hidden);
@@ -727,7 +759,7 @@
         document.getElementById('profile-role').textContent = `株式会社ライトアップ ${p.role}`;
         const readable = visibleCards.filter(c => c.matches('a.article-card')).length;
         const pending = visibleCards.length - readable;
-        document.getElementById('profile-count').textContent = readable ? `${readable}本の記事${pending ? `と${pending}件の取材候補` : ''}。商談前の自己紹介にも使えます。` : `記事は取材準備中。タケルの他己紹介は読めます。`;
+        document.getElementById('profile-count').textContent = readable ? `${readable}本の記事${pending ? `と${pending}件の取材候補` : ''}。商談前の自己紹介にも使えます。` : (p.about === null ? `記事と紹介文は、ただいま取材準備中です。` : `記事は取材準備中。タケルの他己紹介は読めます。`);
         document.getElementById('profile-intro').textContent = p.intro;
         document.getElementById('profile-about').hidden = p.about === null;
         document.getElementById('profile-about').href = p.about || `./people/${p.id}/`;
