@@ -538,7 +538,7 @@
         </article>
 
         <article class="article-card is-pending is-future" data-who="" data-dept="sales1" aria-label="次の取材枠・準備中">
-          <div class="article-body"><p class="episode">NEXT STORY ／ 取材枠</p><h4>まだ名刺に書けない、次の話へ</h4><p class="summary">第一営業部から始まった記録は、第二営業部へ広がりました。次は企画開発部門へ。取材を準備中です。</p></div>
+          <div class="article-body"><p class="episode">NEXT STORY ／ 取材枠</p><h4>まだ名刺に書けない、次の話へ</h4><p class="summary">第一営業部から始まった記録は、第二営業部へ広がりました。仕事の場面と本人の言葉を、各チームから集めています。</p></div>
         </article>
 
         <div class="library-head" id="library-head" hidden><div><span class="section-kicker">LIBRARY</span><h4>この人のライブラリー</h4></div><p id="library-note"></p></div>
@@ -563,13 +563,10 @@
 <button class="dept-tab" type="button" data-dept="selcon-a" aria-pressed="false">セルコンAチーム</button>
 <button class="dept-tab" type="button" data-dept="selcon-b" aria-pressed="false">セルコンBチーム</button>
 <button class="dept-tab" type="button" data-dept="selcon-cs" aria-pressed="false">セルコンCSチーム</button>
-<button class="dept-tab" type="button" data-dept="leadership" aria-pressed="false">代表</button>
-<button class="dept-tab" type="button" data-dept="planning" aria-pressed="false">企画開発部門</button>
-<button class="dept-tab" type="button" data-dept="is" aria-pressed="false">IS</button>
 </div>
       </div>
       <div class="finder-tools">
-        <p id="people-count">36人を掲載中・AIと企画開発の紹介を準備中</p>
+        <p id="people-count">36人を掲載中・AI・アバターの紹介を準備中</p>
         <div class="finder-actions">
           <input class="person-search" id="person-search" type="search" placeholder="名前で探す" aria-label="名前で探す" autocomplete="off">
         </div>
@@ -615,7 +612,7 @@
       { id:'kuroki', name:'黒木 亜美', role:'第二営業部', dept:'sales2', img:null, about:null, intro:'「自分らしさは探すものではなく、行動して作るもの」。講演で聞いた言葉に、これまでの自分を肯定された。' },
       { id:'furihata', name:'降旗 一也', role:'第二営業部 リーダー', dept:'sales2', img:'./assets/member-furihata.png', about:null, intro:'誘導の担当で、講演は途中から聞いた。それでも残ったのは「全てはESに」だった。' },
       { id:'suzuki', name:'鈴木 淳', role:'第一営業部', dept:'sales1', img:null, about:null, intro:'「地方の企業は採用が難しい」は、思い込みだった。講演で聞いた数字に、考えが変わった。' },
-      { id:'tanaka', name:'田中 伸幸', role:'IS', dept:'is', img:null, about:null, intro:'社長が現場に降りて、営業に走っている。そこにAIを入れて、本来の役割に戻す。' },
+      { id:'tanaka', name:'田中 伸幸', role:'社員', dept:'is', img:null, about:null, intro:'社長が現場に降りて、営業に走っている。そこにAIを入れて、本来の役割に戻す。' },
       { id:'shiraishi', name:'白石 崇', role:'代表', dept:'leadership', img:'./assets/portrait-07.jpg', about:'./shiraishi-memory/', intro:'数字の「なぜ？」は残る。でもサウナの「縦」はまだ謎。タケルが聞いた、白石の記憶の話。' },
       {"id":"shinomura","name":"篠村 未菜","role":"第二営業部","dept":"sales2","img":null,"about":null,"intro":"仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
       {"id": "eda", "name": "江田 梨奈", "role": "第二営業部", "dept": "sales2", "img": "./assets/member-eda.jpg", "about": null, "intro": "仕事の話と、人柄が伝わるエピソードを取材準備中です。"},
@@ -651,7 +648,7 @@
     const empty = document.getElementById('empty');
     const personSearch = document.getElementById('person-search');
     const TOTAL_SLOTS = PEOPLE.length;
-    const DEPT_LABELS = {"all": "担当者", "sales1": "第一営業部", "sales2": "第二営業部", "sales3": "第三営業部", "training": "研修バードチーム", "impact": "AIインパクトチーム", "selcon-a": "セルコンAチーム", "selcon-b": "セルコンBチーム", "selcon-cs": "セルコンCSチーム", "leadership": "代表", "planning": "企画開発部門", "is": "IS"};
+    const DEPT_LABELS = {"all": "担当者", "sales1": "第一営業部", "sales2": "第二営業部", "sales3": "第三営業部", "training": "研修バードチーム", "impact": "AIインパクトチーム", "selcon-a": "セルコンAチーム", "selcon-b": "セルコンBチーム", "selcon-cs": "セルコンCSチーム"};
     const inDept = (p, dept) => dept === "all" || (p.depts || [p.dept]).includes(dept);
     let state = { who:null, dept:'all' };
     const personButtons = new Map();
@@ -667,8 +664,7 @@
       peopleEl.appendChild(b);
     });
     const pendingSlots = [
-      {dept:'sales3',title:'第三営業部',text:'AI・アバターの紹介を準備中'},
-      {dept:'planning',title:'企画開発部門',text:'紹介を準備中'}
+      {dept:'sales3',title:'第三営業部',text:'AI・アバターの紹介を準備中'}
     ].map(p => {
       const slot = document.createElement('div');
       slot.className = 'person-placeholder'; slot.dataset.dept = p.dept;
@@ -731,7 +727,7 @@
         b.setAttribute('aria-pressed', String(id === state.who));
       });
       pendingSlots.forEach(slot => { slot.hidden = !!query || (state.dept !== 'all' && state.dept !== slot.dataset.dept) || !!state.who; });
-      document.getElementById('people-count').textContent = query ? `${matching.length}人が見つかりました` : state.who ? `${PEOPLE.length}人から選択中` : state.dept === 'all' ? `${PEOPLE.length}人を掲載中${pendingSlots.length ? `・AIと企画開発の紹介を準備中` : ''}` : `${DEPT_LABELS[state.dept]} ${matching.length}人を掲載中`;
+      document.getElementById('people-count').textContent = query ? `${matching.length}人が見つかりました` : state.who ? `${PEOPLE.length}人から選択中` : state.dept === 'all' ? `${PEOPLE.length}人を掲載中${pendingSlots.length ? `・AI・アバターの紹介を準備中` : ''}` : `${DEPT_LABELS[state.dept]} ${matching.length}人を掲載中`;
       document.getElementById('people-empty').classList.toggle('is-show', matching.length === 0 && !pendingSlots.some(slot => !slot.hidden));
       let shown = 0;
       cards.forEach(c => {
